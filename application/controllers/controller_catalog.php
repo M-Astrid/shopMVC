@@ -5,6 +5,7 @@
  * Date: 18.10.2019
  * Time: 14:04
  */
+use Components\Pagination;
 
 class Controller_Catalog extends Controller
 {

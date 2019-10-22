@@ -9,7 +9,6 @@ class Controller {
 	function __construct()
 	{
 		$this->view = new View();
-		require_once ROOT.'/include/pagination.php';
 	}
 
 	public function get_model($name)

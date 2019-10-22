@@ -1,7 +1,8 @@
 {
-    "name": "astrid/testmvc",
-    "description": "test e-shop based on mvc structure",
-    "type": "library",
-    "minimum-stability": "dev",
-    "require": {}
+    "autoload": {
+        "psr-4": {
+            "Models\\": "models",
+            "Components\\": "components"
+        }
+    }
 }
