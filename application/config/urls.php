@@ -9,10 +9,11 @@
 // uripattern => path
 return array (
     '^$' => 'main',
-    '^auth' => 'auth/login',
-    '^auth/signup' => 'auth/signup',
-    '^auth/login' => 'auth/login',
+    '^signup' => 'auth/signup',
+    '^login' => 'auth/login',
     '^logout' => 'auth/logout',
+    '^success' => 'auth/success',
+    '^profile' => 'profile/index',
     '^news' => 'news',
     '^news/([\d]+)' => 'news/detail/$1',
     '^catalog' => 'catalog/index',

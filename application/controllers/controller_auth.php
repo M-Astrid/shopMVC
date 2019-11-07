@@ -6,105 +6,69 @@ class Controller_Auth extends Controller
     function action_signup()
     {
         $model = $this->get_model('auth');
-        $result = false;
+        $errors = array();
 
         if ( $_SERVER['REQUEST_METHOD'] == 'POST')
         {
-            $errors = array();
-
             // check username
-            $username = trim($_POST['username']);
-            if ( $username == "" )
-            {
-                $errors[] = "Введите своё имя";
-            }
-            if ( strlen($username) < 2 )
-            {
-                $errors[] = "Имя не может быть короче двух символов";
-            }
-
+            $errors = $model->check_username(trim($_POST['username']));
 
             // check email
-            $email = trim($_POST['email']);
-            if ( $email == "" )
-            {
-                $errors[] = "Введите E-mail";
-            }
-            if ( $model->check_email_exists($email) )
-            {
-                $errors[] = "Пользователь с таким E-mail уже существует";
-            }
-
+            $errors = array_merge($errors, $model->check_email(trim($_POST['email'])));
 
             // check password
-            if ( $_POST['password'] == "" )
-            {
-                $errors[] = "Не указан пароль";
-            }
-            if ( $_POST['password_2'] != $_POST['password'] )
-            {
-                $errors[] = "Повторный пароль введен неверно";
-            }
+            $errors = array_merge($errors, $model->check_password($_POST['password'], $_POST['password_2']));
 
+            // no errors, create user
             if ( empty($errors) )
             {
-                $result = $model->create_user($_POST['username'], $_POST['email'], $_POST['password']);
-            }
-            else 
-            {
-                $this->view->generate('auth_view.php', 'template_view.php', array(
-                    'errors' => $errors,
-                ));
+                $user = $model->create_user($_POST['username'], $_POST['email'], $_POST['password']);
+                if ($user)
+                {
+                    header('Location:/success/');
+                } else $errors[] = "Ошибка на сервере. Попробуйте еще раз.";
             }
         }
-        $this->view->generate('auth_view.php', 'template_view.php', array(
-            'register_successful' => $result,
+        $this->view->generate('signup_view.php', 'template_view.php', array(
+            'errors' => $errors,
         ));
     }
 
     function action_login()
-    {        
-        if(isset($_POST['email']) && isset($_POST['password']))
-        {
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $errors = array();
-            $data = $_POST;
-        
+
             // проверяем заполненность полей
-            if ( trim($_POST['email']) == "" )
-            {
+            if (trim($_POST['email']) == "") {
                 $errors[] = "Введите E-mail";
             }
 
-            if ( trim($_POST['password']) == "" )
-            {
+            if (trim($_POST['password']) == "") {
                 $errors[] = "Введите пароль";
             }
 
 
             // no errors. try to find user
-            if ( empty( $errors ) )
-            {
-                $user = R::findOne('user', 'email = ?', array( $data['email' ] ));
-                if ( $user )
-                {
+            $model = $this->get_model('auth');
+            if (empty($errors)) {
+                $user = $model->check_email_exists($_POST['email']);
+                if ($user) {
                     //e-mail существует
-                    if ( password_verify( $data['password'], $user->password ))
-                    {
+                    if (password_verify($_POST['password'], $user->password)) {
                         $_SESSION['logged_user'] = $user->id;
-                        header('Location:/');
-                    } else
-                    {
+                        header('Location:/profile/');
+                    } else {
                         $errors[] = "Неверный пароль";
                     }
-                } else
-                {
+                } else {
                     $errors[] = "Пользователя с таким E-mail не существует";
                 }
             }
         }
-        $this->view->generate('auth_view.php', 'template_view.php', array(
-            'errors' => $errors
-        )
+        $this->view->generate('login_view.php', 'template_view.php', array(
+                'errors' => $errors
+            )
         );
     }
 
@@ -112,5 +76,10 @@ class Controller_Auth extends Controller
     {
         unset( $_SESSION['logged_user'] );
         header('Location:/');
+    }
+
+    function action_success()
+    {
+        $this->view->generate('success_view.php', 'template_view.php');
     }
 }

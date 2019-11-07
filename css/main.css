@@ -1429,11 +1429,13 @@ h2.title {
 /*************************
 *******login page CSS******
 **************************/
-
+#success {
+    margin-bottom: 215px;
+}
 #form {
   display: block;
-  margin-bottom: 185px;
-  margin-top: 185px;
+  margin-bottom: 85px;
+  margin-top: 7px;
   overflow: hidden;
 }
 

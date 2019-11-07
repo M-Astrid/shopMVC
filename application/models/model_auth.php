@@ -10,23 +10,64 @@ class Model_Auth extends Model
         $user->password = password_hash($password, PASSWORD_DEFAULT);
         $user->join_date = time();
         R::store($user);
+
         return true;
-        //echo '<script src="/js/redirect.js" type="text/javascript"></script>';
     }
 
     public function check_email_exists($email)
     {
-        if ( R::count('user', 'email = ?', array($email)) > 0 )
+        $user = R::findOne('user', 'email = ?', array($email));
+        if ( $user )
         {
-            return true;
+            return $user;
         } else return false;
     }
 
-    public function check_user_exists($username)
+    public function check_username($username)
     {
-        if ( R::count('user', 'username = ?', array($username)) > 0 )
+        $errors=array();
+
+        if ( $username == "" )
         {
-            return true;
-        } else return false;
+            $errors[] = "Введите своё имя";
+        }
+        if ( strlen($username) < 2 )
+        {
+            $errors[] = "Имя не может быть короче двух символов";
+        }
+
+        return $errors;
+    }
+
+    public function check_email($email)
+    {
+        $errors=array();
+
+        if ( $email == "" )
+        {
+            $errors[] = "Введите E-mail";
+        }
+        if ( $this->check_email_exists($email) )
+        {
+            $errors[] = "Пользователь с таким E-mail уже существует";
+        }
+
+        return $errors;
+    }
+
+    public function check_password($password, $password2)
+    {
+        $errors=array();
+
+        if ( $password == "" )
+        {
+            $errors[] = "Не указан пароль";
+        }
+        if ( $password != $password2 )
+        {
+            $errors[] = "Повторный пароль введен неверно";
+        }
+
+        return $errors;
     }
 }
