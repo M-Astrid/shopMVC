@@ -14,6 +14,7 @@ return array (
     '^logout' => 'auth/logout',
     '^success' => 'auth/success',
     '^profile' => 'profile/index',
+    '^profile/edit' => 'profile/edit',
     '^news' => 'news',
     '^news/([\d]+)' => 'news/detail/$1',
     '^catalog' => 'catalog/index',
