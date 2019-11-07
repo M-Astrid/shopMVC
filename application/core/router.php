@@ -40,13 +40,19 @@ class Router
         // проверяем на соответствие паттернам, указанным в urls.php
         foreach ($this->routes as $uripattern => $path)
         {
-            if(preg_match("~^$uripattern$~", $uri))
+            if(preg_match("~^$uripattern~", $uri))
             {
                 //получаем имя контроллера, действия и параметры
+                //echo $uripattern;
+                echo $path;
                 $internal_route = preg_replace("~$uripattern~", $path, $uri);
+                //$segments = explode('?', $internal_route);
+                //$qs = $segments
                 $segments = explode('/', $internal_route);
 
                 $controller_name = array_shift($segments);
+
+                //echo $controller_name.'</br>';
 
                 $controller_name = 'Controller_'.ucfirst($controller_name);
 
@@ -54,6 +60,7 @@ class Router
                 {
                     $action_name = 'action_'.array_shift($segments);
                 } else $action_name = 'action_index';
+
 
                 $parameters = $segments;
 

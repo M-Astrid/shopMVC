@@ -22,22 +22,32 @@ class Model_Catalog extends Model
         return $product_list;
     }
 
+    /*
     public function get_products()
     {
         $product_list = R::getAll("SELECT id, name, price, img, is_new FROM product WHERE display=True ORDER BY id ASC");
         return $product_list;
     }
+    */
 
     public function get_products_by_category($category_id, $page, $count = self::SHOW_BY_DEFAULT)
     {
+        $condition = "AND category_id=$category_id ";
+        if ($category_id=="0")
+        {
+            $condition = '';
+        }
         $offset = ($page-1)*$count;
-        $product_list = R::getAll("SELECT id, name, price, img, is_new FROM product WHERE display=True AND category_id=$category_id ORDER BY id DESC LIMIT ".$count." OFFSET ".$offset);
+        $product_list = R::getAll("SELECT id, name, price, img, is_new FROM product WHERE display=True ".$condition."ORDER BY id DESC LIMIT ".$count." OFFSET ".$offset);
         return $product_list;
     }
 
     public static function get_total_products_in_category($category_id)
     {
-        $count = R::count('product', "category_id = ?", [$category_id]);
+        if ($category_id=="0")
+        {
+            $count = R::count('product');
+        } else $count = R::count('product', "category_id = ?", [$category_id]);
         return $count;
     }
 

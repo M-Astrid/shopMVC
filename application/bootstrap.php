@@ -5,6 +5,11 @@
 define('ROOT', dirname(__FILE__));
 
 
+// стартуем сессию
+
+session_start();
+
+
 // подключаем файлы ядра
 
 require_once 'core/model.php';

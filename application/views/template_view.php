@@ -25,7 +25,7 @@
     </head><!--/head-->
 
     <body>
-
+<?='</br>id: '.$_SESSION['logged_user']?>
     <!-- header -->
 
         <header id="header"><!--header-->
@@ -64,8 +64,12 @@
                             <div class="shop-menu pull-right">
                                 <ul class="nav navbar-nav">                                    
                                     <li><a href="/cart/"><i class="fa fa-shopping-cart"></i> Корзина</a></li>
+                                    <?php if (isset($_SESSION['logged_user'])): ?>
                                     <li><a href="/profile/"><i class="fa fa-user"></i> Аккаунт</a></li>
-                                    <li><a href="/login/"><i class="fa fa-lock"></i> Вход</a></li>
+                                    <li><a href="/logout/"><i class="fa fa-unlock"></i> Выйти</a></li>
+                                    <?php else: ?>
+                                    <li><a href="/auth/"><i class="fa fa-lock"></i> Вход/Регистрация </a></li>
+                                    <?php endif ?>
                                 </ul>
                             </div>
                         </div>
