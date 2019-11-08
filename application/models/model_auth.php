@@ -14,11 +14,6 @@ class Model_Auth extends Model
         return true;
     }
 
-    public function get_user_by_id($id)
-    {
-        return R::getrow("SELECT * FROM user WHERE id = $id");
-    }
-
     public function check_email_exists($email)
     {
         $user = R::findOne('user', 'email = ?', array($email));

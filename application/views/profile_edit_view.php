@@ -8,11 +8,15 @@
                     <?php endforeach; ?>
                 <?php endif; ?>
                 <div class="signup-form"><!--sign up form-->
-                    <h2>Редактирование данных</h2>
-                    <form action="/signup" method="post">
-                        <input type="text" placeholder="Name" name="username" value="<?=@$_POST['username']?>"/>
-                        <input type="email" placeholder="Email Address" name="email" value="<?=@$_POST['email']?>"/>
+                    <h2><b>Редактирование данных</b></h2>
+                    <form action="/profile/edit/" method="post">
+                        <p>Имя:</p>
+                        <input type="text" placeholder="Name" name="username" value="<?=$user['username']?>"/>
+                        <p>E-mail:</p>
+                        <input type="email" placeholder="Email Address" name="email" value="<?=$user['email']?>"/>
+                        <p>Пароль:</p>
                         <input type="password" placeholder="Password" name="password"/>
+                        <p>Подтвердите пароль:</p>
                         <input type="password" placeholder="Password" name="password_2"/>
                         <button type="submit" class="btn btn-default">Сохранить</button>
                     </form>

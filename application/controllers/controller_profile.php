@@ -26,23 +26,45 @@ Class Controller_Profile extends Controller
     public function action_edit()
     {
         $this->check_logged();
-        $model = $this->get_model('auth');
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST')
         {
+            $model = $this->get_model('auth');
+            $user = $model->get_object_by_id('user', $_SESSION['logged_user']);
             $errors = array();
 
             // check username
-            $errors = $model->check_username(trim($_POST['username']));
+            if ( $_POST['username'] != $user['username'] )
+            {
+                $errors = $model->check_username(trim($_POST['username']));
+                $data['username'] = $_POST['username'];
+            }
 
             // check email
-            $errors = array_merge($errors, $model->check_email(trim($_POST['email'])));
+            if ( $_POST['email'] != $user['email'] )
+            {
+                $errors = array_merge($errors, $model->check_email(trim($_POST['email'])));
+                $data['email'] = $_POST['email'];
+            }
 
             // check password
-            $errors = array_merge($errors, $model->check_password($_POST['password'], $_POST['password_2']));
+            if ( $_POST['password'] != '' )
+            {
+                $errors = array_merge($errors, $model->check_password($_POST['password'], $_POST['password_2']));
+                $data['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
+            }
+
+            // no errors, update profile
+            if ( !$errors )
+            {
+                $model->object_update('user', $_SESSION['logged_user'], $data);
+
+            }
         }
+        $user = $model->get_object_by_id('user', $_SESSION['logged_user']);
         $this->view->generate('profile_edit_view.php', 'template_view.php', array(
             'errors' => $errors,
+            'user' => $user,
         ));
     }
 }
