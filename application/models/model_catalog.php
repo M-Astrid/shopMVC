@@ -52,6 +52,10 @@ class Model_Catalog extends Model
     public static function get_products_by_ids($ids)
     {
         $list = implode(', ', $ids);
-        return R::getAll("SELECT * FROM product WHERE id IN ($list)");
+        if ($list != "")
+        {
+            return R::getAll("SELECT * FROM product WHERE id IN ($list)");
+        }
+        else return array();
     }
 }

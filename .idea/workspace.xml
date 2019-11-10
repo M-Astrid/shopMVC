@@ -2,22 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b75d0024-7f26-4ce5-bf61-43d663ac5766" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/application/components/cart.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/controllers/controller_cart.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/application/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/config/urls.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/config/urls.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/controllers/controller_auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/controller_auth.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/controllers/controller_contact.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/controller_contact.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/core/controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/core/controller.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/core/router.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/core/router.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/core/view.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/core/view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/components/cart.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/components/cart.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/controllers/controller_cart.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/controller_cart.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/models/model_catalog.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/models/model_catalog.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/cart_view.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/cart_view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/contact_view.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/contact_view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/main_view.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/main_view.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/views/template_view.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/template_view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/main.css" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -59,13 +47,13 @@
         <counts>
           <entry key="css" value="41" />
           <entry key="dummy" value="14" />
-          <entry key="php" value="14920" />
+          <entry key="php" value="14979" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="41" />
-          <entry key="PHP" value="14920" />
+          <entry key="PHP" value="14979" />
           <entry key="PLAIN_TEXT" value="14" />
         </counts>
       </usages-collector>
@@ -105,20 +93,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/views/template_view.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="28" column="31" selection-start-line="28" selection-start-column="31" selection-end-line="28" selection-end-column="31" />
+            <state relative-caret-position="-2141">
+              <caret line="26" column="10" selection-start-line="26" selection-start-column="10" selection-end-line="26" selection-end-column="10" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/controllers/controller_cart.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="42" column="34" selection-start-line="42" selection-start-column="34" selection-end-line="42" selection-end-column="34" />
+            <state relative-caret-position="395">
+              <caret line="55" column="5" lean-forward="true" selection-start-line="55" selection-start-column="5" selection-end-line="55" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -126,8 +114,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/components/cart.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="29" column="46" lean-forward="true" selection-start-line="29" selection-start-column="27" selection-end-line="29" selection-end-column="46" />
+            <state relative-caret-position="460">
+              <caret line="37" column="2" selection-start-line="37" selection-start-column="2" selection-end-line="37" selection-end-column="2" />
             </state>
           </provider>
         </entry>
@@ -135,8 +123,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/models/model_catalog.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="429">
-              <caret line="54" column="70" selection-start-line="54" selection-start-column="70" selection-end-line="54" selection-end-column="70" />
+            <state relative-caret-position="497">
+              <caret line="58" column="28" selection-start-line="58" selection-start-column="28" selection-end-line="58" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -196,10 +184,10 @@
         <option value="$PROJECT_DIR$/application/controllers/controller_auth.php" />
         <option value="$PROJECT_DIR$/application/config/urls.php" />
         <option value="$PROJECT_DIR$/application/views/cart_view.php" />
-        <option value="$PROJECT_DIR$/application/components/cart.php" />
-        <option value="$PROJECT_DIR$/application/controllers/controller_cart.php" />
-        <option value="$PROJECT_DIR$/application/models/model_catalog.php" />
         <option value="$PROJECT_DIR$/application/views/template_view.php" />
+        <option value="$PROJECT_DIR$/application/components/cart.php" />
+        <option value="$PROJECT_DIR$/application/models/model_catalog.php" />
+        <option value="$PROJECT_DIR$/application/controllers/controller_cart.php" />
       </list>
     </option>
   </component>
@@ -338,12 +326,12 @@
       <workItem from="1571308703168" duration="55432000" />
       <workItem from="1573189890588" duration="4310000" />
       <workItem from="1573208362762" duration="598000" />
-      <workItem from="1573215076499" duration="40205000" />
+      <workItem from="1573215076499" duration="40763000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="114965000" />
+    <option name="totallyTimeSpent" value="115523000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -674,29 +662,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/components/cart.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="29" column="46" lean-forward="true" selection-start-line="29" selection-start-column="27" selection-end-line="29" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/controller_cart.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="42" column="34" selection-start-line="42" selection-start-column="34" selection-end-line="42" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/models/model_catalog.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="54" column="70" selection-start-line="54" selection-start-column="70" selection-end-line="54" selection-end-column="70" />
+        <state relative-caret-position="460">
+          <caret line="37" column="2" selection-start-line="37" selection-start-column="2" selection-end-line="37" selection-end-column="2" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/template_view.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="28" column="31" selection-start-line="28" selection-start-column="31" selection-end-line="28" selection-end-column="31" />
+        <state relative-caret-position="-2141">
+          <caret line="26" column="10" selection-start-line="26" selection-start-column="10" selection-end-line="26" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/models/model_catalog.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="497">
+          <caret line="58" column="28" selection-start-line="58" selection-start-column="28" selection-end-line="58" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/controller_cart.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="395">
+          <caret line="55" column="5" lean-forward="true" selection-start-line="55" selection-start-column="5" selection-end-line="55" selection-end-column="5" />
         </state>
       </provider>
     </entry>

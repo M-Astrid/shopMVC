@@ -25,8 +25,6 @@
     </head><!--/head-->
 
     <body>
-
-<?php unset($_SESSION['products']);?>
     <!-- header -->
 
         <header id="header"><!--header-->

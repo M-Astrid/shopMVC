@@ -52,6 +52,14 @@ Class Controller_Cart extends Controller
         return true;
     }
 
+    public function action_q_up($id)
+    {
+        $quantity = Cart::q_up($id);
+
+        echo $quantity;
+        return true;
+    }
+
     public function action_refresh_prices($id)
     {
         $model = $this->get_model('catalog');
