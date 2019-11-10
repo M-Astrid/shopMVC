@@ -25,7 +25,8 @@
     </head><!--/head-->
 
     <body>
-<?='</br>id: '.$_SESSION['logged_user']?>
+
+<?php unset($_SESSION['products']);?>
     <!-- header -->
 
         <header id="header"><!--header-->
@@ -63,7 +64,8 @@
                         <div class="col-sm-8">
                             <div class="shop-menu pull-right">
                                 <ul class="nav navbar-nav">                                    
-                                    <li><a href="/cart/"><i class="fa fa-shopping-cart"></i> Корзина</a></li>
+                                    <li><a href="/cart/"><i class="fa fa-shopping-cart"></i> Корзина
+                                            (<span id="cart-count"><?=$cart::count_items()?></span>)</a></li>
                                     <?php if (isset($_SESSION['logged_user'])): ?>
                                     <li><a href="/profile/"><i class="fa fa-user"></i> Аккаунт</a></li>
                                     <li><a href="/logout/"><i class="fa fa-unlock"></i> Выйти</a></li>
@@ -134,5 +136,68 @@
         <script src="/js/price-range.js"></script>
         <script src="/js/jquery.prettyPhoto.js"></script>
         <script src="/js/main.js"></script>
+
+        <script>
+            $(document).ready(function(){
+                $(".add-to-cart").click(function() {
+                    var id = $(this).attr("data-id");
+                    $.post("/cart/add/"+id, {}, function(data){
+                        $("#cart-count").html(data);
+                    });
+                    return false;
+                });
+            });
+        </script>
+
+        <script>
+            $(document).ready(function(){
+                $(".cart_quantity_delete").click(function() {
+                    var id = $(this).attr("data-id");
+                    $.post("/cart/delete/"+id, {}, function(){
+                        $("#item<?=$product['id']?>").css("display", "none");
+                        });
+                    $.getJSON('/cart/refresh_prices/'+id, function(data){
+                        $(".cart_total_price"+id).html(data.cart_total_price);
+                        $(".subtotal").html(data.subtotal);
+                        $("#cart-count").html(data.cart_count);
+                    });
+                    return false;
+                });
+            });
+        </script>
+
+        <script>
+            $(document).ready(function(){
+                $(".cart_quantity_up").click(function() {
+                    var id = $(this).attr("data-id");
+                    $.get('/cart/q_up/'+id, function(data){
+                        $("#quantity_input"+id).val(data);
+                    });
+                    $.getJSON('/cart/refresh_prices/'+id, function(data){
+                        $(".cart_total_price"+id).html(data.cart_total_price);
+                        $(".subtotal").html(data.subtotal);
+                        $("#cart-count").html(data.cart_count);
+                    });
+                    return false;
+                });
+            });
+        </script>
+
+        <script>
+            $(document).ready(function(){
+                $(".cart_quantity_down").click(function() {
+                    var id = $(this).attr("data-id");
+                    $.get('/cart/q_down/'+id, function(data){
+                        $("#quantity_input"+id).val(data);
+                    });
+                    $.getJSON('/cart/refresh_prices/'+id, function(data){
+                        $(".cart_total_price"+id).html(data.cart_total_price);
+                        $(".subtotal").html(data.subtotal);
+                        $("#cart-count").html(data.cart_count);
+                    });
+                    return false;
+                });
+            });
+        </script>
     </body>
 </html>

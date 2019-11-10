@@ -4,5 +4,8 @@
             "Models\\": "models",
             "Components\\": "components"
         }
+    },
+    "require": {
+        "ext-json": "*"
     }
 }

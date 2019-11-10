@@ -40,7 +40,7 @@
                                     <a href="/product/<?=$product['id']?>"><img src="/images/shop/<?=$product['img']?>"></a>
                                     <h2><?=$product['price']?></h2>
                                     <a href="/product/<?=$product['id']?>"><p><?=$product['name']?></p></a>
-                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>В корзину</a>
+                                    <a href="#" class="btn btn-default add-to-cart" data-id="<?=$product['id']?>"><i class="fa fa-shopping-cart"></i>В корзину</a>
                                 </div>
                                 <?php if ( $product['is_new'] == 1 ): ?>
                                 <img src="/images/home/new.png" class="new">

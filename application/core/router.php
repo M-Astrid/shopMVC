@@ -43,16 +43,13 @@ class Router
             if(preg_match("~^$uripattern~", $uri))
             {
                 //получаем имя контроллера, действия и параметры
-                //echo $uripattern;
-                echo $path;
+
                 $internal_route = preg_replace("~$uripattern~", $path, $uri);
-                //$segments = explode('?', $internal_route);
-                //$qs = $segments
+
+                //print_r($path);
                 $segments = explode('/', $internal_route);
 
                 $controller_name = array_shift($segments);
-
-                //echo $controller_name.'</br>';
 
                 $controller_name = 'Controller_'.ucfirst($controller_name);
 

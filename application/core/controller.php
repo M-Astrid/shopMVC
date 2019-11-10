@@ -1,14 +1,20 @@
 <?php
+use Components\Cart;
+use Components\Pagination;
 
 class Controller {
 
     public $model_name;
     public $view;
     public $model;
+
 	
 	function __construct()
 	{
 		$this->view = new View();
+
+		//components
+		$this->cart = new Cart();
 	}
 
 	public function get_model($name)

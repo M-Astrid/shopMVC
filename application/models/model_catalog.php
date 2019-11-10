@@ -22,14 +22,6 @@ class Model_Catalog extends Model
         return $product_list;
     }
 
-    /*
-    public function get_products()
-    {
-        $product_list = R::getAll("SELECT id, name, price, img, is_new FROM product WHERE display=True ORDER BY id ASC");
-        return $product_list;
-    }
-    */
-
     public function get_products_by_category($category_id, $page, $count = self::SHOW_BY_DEFAULT)
     {
         $condition = "AND category_id=$category_id ";
@@ -57,4 +49,9 @@ class Model_Catalog extends Model
         return $product;
     }
 
+    public static function get_products_by_ids($ids)
+    {
+        $list = implode(', ', $ids);
+        return R::getAll("SELECT * FROM product WHERE id IN ($list)");
+    }
 }

@@ -1,4 +1,5 @@
 <?php
+use Components\Cart;
 
 class View
 {
@@ -8,9 +9,11 @@ class View
 	$template_file - общий для всех страниц шаблон;
 	$data - массив, содержащий элементы контента страницы. Обычно заполняется в модели.
 	*/
+	public $cart; // методы корзины
 
 	function generate($content_view, $template_view, $data = null)
 	{
+        $cart = new Cart();
 
 		if(is_array($data)) {
 			

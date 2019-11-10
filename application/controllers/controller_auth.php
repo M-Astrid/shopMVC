@@ -65,6 +65,10 @@ class Controller_Auth extends Controller
                     $errors[] = "Пользователя с таким E-mail не существует";
                 }
             }
+            if (isset($_SESSION['products']))
+            {
+                //
+            }
         }
         $this->view->generate('login_view.php', 'template_view.php', array(
                 'errors' => $errors
@@ -75,6 +79,7 @@ class Controller_Auth extends Controller
     function action_logout()
     {
         unset( $_SESSION['logged_user'] );
+        unset( $_SESSION['products'] );
         header('Location:/');
     }
 
