@@ -26,7 +26,7 @@ class Cart
 
         return self::count_items();
     }
-/*
+
     public static function delete_product($id)
     {
         unset($_SESSION['products'][$id]);
@@ -35,7 +35,7 @@ class Cart
             unset($_SESSION['products']);
         }
     }
-*/
+
     public static function q_up($id)
     {
         $id = intval($id);

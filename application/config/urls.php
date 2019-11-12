@@ -23,17 +23,18 @@ return array (
 
     '^contact$' => 'contact/index',
 
-    '^catalog' => 'catalog/index',
+    '^catalog$' => 'catalog/index',
     '^catalog/page-([\d]+)' => 'catalog/index/0/$1',
-    '^category/([\d]+)' => 'catalog/index/$1',
+    '^category/([\d]+)$' => 'catalog/index/$1',
     '^category/([\d]+)/page-([\d]+)' => 'catalog/index/$1/$2',
 
     '^product/([\d]+)' => 'product/detail/$1',
 
-    'cart/add/([\d]+)' => 'cart/add/$1',
-    'cart/delete/([\d]+)' => 'cart/delete/$1',
-    'cart/q_up/([\d]+)' => 'cart/q_up/$1',
-    'cart/q_down/([\d]+)' => 'cart/q_down/$1',
-    'cart/refresh_prices/([\d]+)' => 'cart/refresh_prices/$1',
-    'cart' => 'cart/index',
+    '^cart/add/([\d]+)$' => 'cart/add/$1',
+    '^cart/delete/([\d]+)$' => 'cart/delete/$1',
+    '^cart/q_up/([\d]+)$' => 'cart/q_up/$1',
+    '^cart/q_down/([\d]+)$' => 'cart/q_down/$1',
+    '^cart/refresh_prices/([\d]+)$' => 'cart/refresh_prices/$1',
+    '^cart$' => 'cart/index',
+    '^cart/checkout$' => 'cart/checkout',
 );

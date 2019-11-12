@@ -34,21 +34,21 @@
                     <h2 class="title text-center">Последние товары</h2>
 
                     <?php foreach ($products as $product): ?>
-                    <div class="col-sm-4">
-                        <div class="product-image-wrapper">
-                            <div class="single-products">
-                                <div class="productinfo text-center">
-                                    <a href="/product/<?=$product['id']?>"><img src="/images/shop/<?=$product['img']?>"></a>
-                                    <h2><?=$product['price']?></h2>
-                                    <a href="/product/<?=$product['id']?>"><p><?=$product['name']?></p></a>
-                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>В корзину</a>
+                        <div class="col-sm-4">
+                            <div class="product-image-wrapper">
+                                <div class="single-products">
+                                    <div class="productinfo text-center">
+                                        <a href="/product/<?=$product['id']?>"><img src="/images/shop/<?=$product['img']?>"></a>
+                                        <h2><?=$product['price']?></h2>
+                                        <a href="/product/<?=$product['id']?>"><p><?=$product['name']?></p></a>
+                                        <a href="#" class="btn btn-default add-to-cart" data-id="<?=$product['id']?>"><i class="fa fa-shopping-cart"></i>В корзину</a>
+                                    </div>
+                                    <?php if ( $product['is_new'] == 1 ): ?>
+                                        <img src="/images/home/new.png" class="new">
+                                    <?php endif ?>
                                 </div>
-                                <?php if ( $product['is_new'] == 1 ): ?>
-                                <img src="/images/home/new.png" class="new">
-                                <?php endif ?>
                             </div>
                         </div>
-                    </div>
                     <?php endforeach; ?>
                 </div><!--features_items-->
                 <?php echo $paginator->get(); ?>

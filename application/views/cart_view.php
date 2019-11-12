@@ -6,6 +6,7 @@
 				  <li class="active">Shopping Cart</li>
 				</ol>
 			</div>
+            <?php if (isset($_SESSION['products'])): ?>
 			<div class="table-responsive cart_info">
 				<table class="table table-condensed">
 					<thead>
@@ -42,7 +43,7 @@
 								<p>$ <span class="cart_total_price<?=$product['id']?>"><?=$_SESSION['products'][$product['id']]*$product['price']?></span></p>
 							</td>
 							<td class="cart_delete">
-								<a class="cart_quantity_delete" data-id="<?=$product['id']?>" href=""><i class="fa fa-times"></i></a>
+								<a class="cart_quantity_delete" data-id="<?=$product['id']?>" href="/cart/delete/<?=$product['id']?>"><i class="fa fa-times"></i></a>
 							</td>
 						</tr>
                     <?php endforeach; ?>
@@ -121,9 +122,13 @@
                             <li>Total <span>$<span class="subtotal"><?=$total_price?></span></span></li>
                         </ul>
                         <a class="btn btn-default update" href="">Update</a>
-                        <a class="btn btn-default check_out" href="">Check Out</a>
+                        <a class="btn btn-default check_out" href="/cart/checkout/">Check Out</a>
                     </div>
 				</div>
 			</div>
 		</div>
-	</section><!--/#do_action-->
+    <?php else: ?>
+    <h4 align="center">Корзина пуста</h4>
+        <p align="center"><a href="/catalog/">Перейти к выбору товаров</a></p>
+    <?php endif; ?>
+    </section><!--/#do_action-->

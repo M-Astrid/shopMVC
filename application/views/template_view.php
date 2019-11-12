@@ -26,7 +26,6 @@
 
     <body>
     <!-- header -->
-
         <header id="header"><!--header-->
             <div class="header_top"><!--header_top-->
                 <div class="container">
@@ -141,23 +140,6 @@
                     var id = $(this).attr("data-id");
                     $.post("/cart/add/"+id, {}, function(data){
                         $("#cart-count").html(data);
-                    });
-                    return false;
-                });
-            });
-        </script>
-
-        <script>
-            $(document).ready(function(){
-                $(".cart_quantity_delete").click(function() {
-                    var id = $(this).attr("data-id");
-                    $.post("/cart/delete/"+id, {}, function(){
-                        $("#item<?=$product['id']?>").css("display", "none");
-                        });
-                    $.getJSON('/cart/refresh_prices/'+id, function(data){
-                        $(".cart_total_price"+id).html(data.cart_total_price);
-                        $(".subtotal").html(data.subtotal);
-                        $("#cart-count").html(data.cart_count);
                     });
                     return false;
                 });

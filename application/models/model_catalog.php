@@ -24,13 +24,13 @@ class Model_Catalog extends Model
 
     public function get_products_by_category($category_id, $page, $count = self::SHOW_BY_DEFAULT)
     {
-        $condition = "AND category_id=$category_id ";
+        $condition = "AND category_id = $category_id";
         if ($category_id=="0")
         {
             $condition = '';
         }
-        $offset = ($page-1)*$count;
-        $product_list = R::getAll("SELECT id, name, price, img, is_new FROM product WHERE display=True ".$condition."ORDER BY id DESC LIMIT ".$count." OFFSET ".$offset);
+        $offset = (intval($page)-1)*$count;
+        $product_list = R::getAll("SELECT id, name, price, img, is_new FROM product WHERE display=True $condition ORDER BY id DESC LIMIT $count OFFSET $offset");
         return $product_list;
     }
 
@@ -52,10 +52,7 @@ class Model_Catalog extends Model
     public static function get_products_by_ids($ids)
     {
         $list = implode(', ', $ids);
-        if ($list != "")
-        {
-            return R::getAll("SELECT * FROM product WHERE id IN ($list)");
-        }
-        else return array();
+        return R::getAll("SELECT * FROM product WHERE id IN ($list)");
+
     }
 }
