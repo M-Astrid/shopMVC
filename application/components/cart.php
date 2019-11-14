@@ -3,6 +3,11 @@ namespace Components;
 
 class Cart
 {
+    public static function clear()
+    {
+        unset($_SESSION['products']);
+    }
+
     public static function add_product($id)
     {
         $id = intval($id);

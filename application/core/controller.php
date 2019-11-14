@@ -17,7 +17,7 @@ class Controller {
 		$this->cart = new Cart();
 	}
 
-	public function get_model($name)
+	protected function get_model($name)
     {
         require_once ROOT."/models/model_$name.php";
         $model_name = 'Model_'.ucfirst($name);
@@ -29,4 +29,11 @@ class Controller {
 	{
 		// todo	
 	}
+
+    function action_success($type)
+    {
+        $this->view->generate('success_view.php', 'template_view.php', array(
+            'type' => $type,
+        ));
+    }
 }

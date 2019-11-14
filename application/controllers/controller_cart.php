@@ -40,41 +40,67 @@ Class Controller_Cart extends Controller
         // получаем список категорий
         $categories = $model::get_category_list();
 
+        // проверяем наличие товаров в корзине
+        if (isset($_SESSION['products']))
+        {
+            $products_ids = array_keys($_SESSION['products']);
+            $products = $model::get_products_by_ids($products_ids);
+
+            $products_count = Cart::count_items();
+            $total_price = Cart::get_total_price($products);
+            $products_isset = true;
+        } else $products_isset = false;
+
         // если метод пост
         if ($_SERVER['REQUEST_METHOD'] == "POST")
         {
             // получаем данные формы
             $data = $_POST;
-            // проверяем данные формы
+            $username = $data['username'];
+            $tel = $data['tel'];
+            $comment = $data['comment'];
 
-            // если верно оформляем заказ
+            // проверяем данные формы
+            if (!$this->validate_phone_number($tel))
+            {
+                $errors[] = 'Недопустимый формат телефонного номера';
+            }
+            if ($username == '')
+            {
+                $errors[] = 'Укажите своё имя';
+            }
+
+            // если верно, добавляем заказ в БД и отправляем емэйл менеджеру
+            if (empty($errors))
+            {
+                $model_order = $this->get_model('order');
+                $order_id = $model_order->create_order($username, $tel, $comment, $_SESSION['logged_user'], $_SESSION['products']);
+
+                $admin_email = 'jean.jen@ya.ru';
+                $subject = 'Заказ № '.$order_id;
+                $content = 'Пользователь '.$username.' оформил заказ на сумму '.$total_price;
+                $result = mail($admin_email, $subject, $content);
+                Cart::clear();
+                header("Location:/success/order/");
+            }
 
         } else { // если метод гет
-
-            // проверяем наличие товаров в корзине
-            if (isset($_SESSION['products']))
-            {
-                $products_ids = array_keys($_SESSION['products']);
-                $products = $model::get_products_by_ids($products_ids);
-
-                $products_count = Cart::count_items();
-                $total_price = Cart::get_total_price($products);
-                $products = true;
-            } else $products = false;
 
             // если пользователь авторизован, получаем данные пользователя
             if (isset($_SESSION['logged_user']))
             {
                 $id = $_SESSION['logged_user'];
-                $user = $model->get_object_by_id('auth', $id);
+                $user = $model->get_object_by_id('user', $id);
                 $username = $user['username'];
             } else $username = '';
         }
 
         $this->view->generate("checkout_view.php", "template_view.php", array(
+            'errors' => $errors,
             'categories' => $categories,
             'username' => $username,
             'products' => $products,
+            'products_isset' => $products_isset,
             'products_count' => $products_count,
             'total_price' => $total_price,
         ));
@@ -131,5 +157,18 @@ Class Controller_Cart extends Controller
 
         echo json_encode($data);
         return true;
+    }
+
+    private function validate_phone_number( $string ) {
+
+        if ( preg_match( '/^[+]?([\d]{0,3})?[\(\.\-\s]?([\d]{3})[\)\.\-\s]*([\d]{3})[\.\-\s]?([\d]{4})$/', $string ) ) {
+
+            return true;
+
+        } else {
+
+            return false;
+        }
+
     }
 }

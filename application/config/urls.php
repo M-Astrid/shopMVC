@@ -13,7 +13,7 @@ return array (
     '^signup' => 'auth/signup',
     '^login' => 'auth/login',
     '^logout' => 'auth/logout',
-    '^success' => 'auth/success',
+    '^success/register' => 'auth/success/register',
 
     '^profile$' => 'profile/index',
     '^profile/edit' => 'profile/edit',
@@ -37,4 +37,6 @@ return array (
     '^cart/refresh_prices/([\d]+)$' => 'cart/refresh_prices/$1',
     '^cart$' => 'cart/index',
     '^cart/checkout$' => 'cart/checkout',
+
+    '^success/order$' => 'cart/success/order',
 );

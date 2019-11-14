@@ -25,7 +25,7 @@ class Controller_Auth extends Controller
                 $user = $model->create_user($_POST['username'], $_POST['email'], $_POST['password']);
                 if ($user)
                 {
-                    header('Location:/success/');
+                    header('Location:/success/register/');
                 } else $errors[] = "Ошибка на сервере. Попробуйте еще раз.";
             }
         }
@@ -65,10 +65,6 @@ class Controller_Auth extends Controller
                     $errors[] = "Пользователя с таким E-mail не существует";
                 }
             }
-            if (isset($_SESSION['products']))
-            {
-                //
-            }
         }
         $this->view->generate('login_view.php', 'template_view.php', array(
                 'errors' => $errors
@@ -81,10 +77,5 @@ class Controller_Auth extends Controller
         unset( $_SESSION['logged_user'] );
         unset( $_SESSION['products'] );
         header('Location:/');
-    }
-
-    function action_success()
-    {
-        $this->view->generate('success_view.php', 'template_view.php');
     }
 }

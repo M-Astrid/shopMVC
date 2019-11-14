@@ -7,84 +7,25 @@
 				</ol>
 			</div><!--/breadcrums-->
 
-			<div class="register-req">
-				<p>Please use Register And Checkout to easily get access to your order history, or use Checkout as Guest</p>
-			</div><!--/register-req-->
+            <?php if ($errors != null): ?>
+                <?php foreach ($errors as $error): ?>
+                    <div id="errors" style="color: red;"><li> <?=$error?> </li></div>
+                <?php endforeach; ?>
+            <?php endif; ?>
 
-			<div class="shopper-informations">
-				<div class="row">
-					<div class="col-sm-3">
 						<div class="shopper-info">
-							<p>Shopper Information</p>
-							<form>
-								<input type="text" placeholder="Display Name">
-								<input type="text" placeholder="User Name">
-								<input type="password" placeholder="Password">
-								<input type="password" placeholder="Confirm password">
+							<p>1) Укажите информацию о себе</p>
+							<form class="user-form" action="/cart/checkout/" method="post">
+                                <input type="text" placeholder="Имя" name="username" value="<?=$username?>">
+                                <input type="tel" placeholder="Телефон" name="tel" value="<?=$_POST['tel']?>">
+                                <input type="text" size="" placeholder="Комментарий к заказу" name="comment" value="<?=$_POST['comment']?>">
+                                <button type="submit">Submit</button>
 							</form>
-							<a class="btn btn-primary" href="">Get Quotes</a>
-							<a class="btn btn-primary" href="">Continue</a>
-						</div>
-					</div>
-					<div class="col-sm-5 clearfix">
-						<div class="bill-to">
-							<p>Bill To</p>
-							<div class="form-one">
-								<form>
-									<input type="text" placeholder="Company Name">
-									<input type="text" placeholder="Email*">
-									<input type="text" placeholder="Title">
-									<input type="text" placeholder="First Name *">
-									<input type="text" placeholder="Middle Name">
-									<input type="text" placeholder="Last Name *">
-									<input type="text" placeholder="Address 1 *">
-									<input type="text" placeholder="Address 2">
-								</form>
-							</div>
-							<div class="form-two">
-								<form>
-									<input type="text" placeholder="Zip / Postal Code *">
-									<select>
-										<option>-- Country --</option>
-										<option>United States</option>
-										<option>Bangladesh</option>
-										<option>UK</option>
-										<option>India</option>
-										<option>Pakistan</option>
-										<option>Ucrane</option>
-										<option>Canada</option>
-										<option>Dubai</option>
-									</select>
-									<select>
-										<option>-- State / Province / Region --</option>
-										<option>United States</option>
-										<option>Bangladesh</option>
-										<option>UK</option>
-										<option>India</option>
-										<option>Pakistan</option>
-										<option>Ucrane</option>
-										<option>Canada</option>
-										<option>Dubai</option>
-									</select>
-									<input type="password" placeholder="Confirm password">
-									<input type="text" placeholder="Phone *">
-									<input type="text" placeholder="Mobile Phone">
-									<input type="text" placeholder="Fax">
-								</form>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-4">
-						<div class="order-message">
-							<p>Shipping Order</p>
-							<textarea name="message"  placeholder="Notes about your order, Special Notes for Delivery" rows="16"></textarea>
-							<label><input type="checkbox"> Shipping to bill address</label>
-						</div>	
-					</div>					
-				</div>
-			</div>
-			<div class="review-payment">
-				<h2>Review & Payment</h2>
+                        </div>
+
+
+            </br><div class="review-payment">
+				<h2>2) Проверьте выбранные товары и подтвердите заказ</h2>
 			</div>
 
 			<div class="table-responsive cart_info">
@@ -100,93 +41,40 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td class="cart_product">
-								<a href=""><img src="images/cart/one.png" alt=""></a>
-							</td>
-							<td class="cart_description">
-								<h4><a href="">Colorblock Scuba</a></h4>
-								<p>Web ID: 1089772</p>
-							</td>
-							<td class="cart_price">
-								<p>$59</p>
-							</td>
-							<td class="cart_quantity">
-								<div class="cart_quantity_button">
-									<a class="cart_quantity_up" href=""> + </a>
-									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-									<a class="cart_quantity_down" href=""> - </a>
-								</div>
-							</td>
-							<td class="cart_total">
-								<p class="cart_total_price">$59</p>
-							</td>
-							<td class="cart_delete">
-								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-							</td>
-						</tr>
-
-						<tr>
-							<td class="cart_product">
-								<a href=""><img src="images/cart/two.png" alt=""></a>
-							</td>
-							<td class="cart_description">
-								<h4><a href="">Colorblock Scuba</a></h4>
-								<p>Web ID: 1089772</p>
-							</td>
-							<td class="cart_price">
-								<p>$59</p>
-							</td>
-							<td class="cart_quantity">
-								<div class="cart_quantity_button">
-									<a class="cart_quantity_up" href=""> + </a>
-									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-									<a class="cart_quantity_down" href=""> - </a>
-								</div>
-							</td>
-							<td class="cart_total">
-								<p class="cart_total_price">$59</p>
-							</td>
-							<td class="cart_delete">
-								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-							</td>
-						</tr>
-						<tr>
-							<td class="cart_product">
-								<a href=""><img src="images/cart/three.png" alt=""></a>
-							</td>
-							<td class="cart_description">
-								<h4><a href="">Colorblock Scuba</a></h4>
-								<p>Web ID: 1089772</p>
-							</td>
-							<td class="cart_price">
-								<p>$59</p>
-							</td>
-							<td class="cart_quantity">
-								<div class="cart_quantity_button">
-									<a class="cart_quantity_up" href=""> + </a>
-									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-									<a class="cart_quantity_down" href=""> - </a>
-								</div>
-							</td>
-							<td class="cart_total">
-								<p class="cart_total_price">$59</p>
-							</td>
-							<td class="cart_delete">
-								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-							</td>
-						</tr>
+                    <?php foreach ($products as $product): ?>
+                        <tr id="item<?=$product['id']?>">
+                            <td class="cart_product">
+                                <a href="/product/<?=$product['id']?>"><img src="/images/shop/<?=$product['img']?>" alt=""></a>
+                            </td>
+                            <td class="cart_description">
+                                <h4><a href="/product/<?=$product['id']?>">Colorblock Scuba</a></h4>
+                                <p>Web ID: <?=$product['code']?></p>
+                            </td>
+                            <td class="cart_price">
+                                <p><?=$product['price']?></p>
+                            </td>
+                            <td class="cart_quantity">
+                                <div class="cart_quantity_button">
+                                    <a href="" class="cart_quantity_down" data-id="<?=$product['id']?>"> - </a>
+                                    <input class="cart_quantity_input" id="quantity_input<?=$product['id']?>" type="text" name="quantity" value="<?=$_SESSION['products'][$product['id']]?>" autocomplete="off" size="2">
+                                    <a href="" class="cart_quantity_up" data-id="<?=$product['id']?>"> + </a>
+                                </div>
+                            </td>
+                            <td class="cart_total">
+                                <p>$ <span class="cart_total_price<?=$product['id']?>"><?=$_SESSION['products'][$product['id']]*$product['price']?></span></p>
+                            </td>
+                            <td class="cart_delete">
+                                <a class="cart_quantity_delete" data-id="<?=$product['id']?>" href="/cart/delete/<?=$product['id']?>"><i class="fa fa-times"></i></a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
 						<tr>
 							<td colspan="4">&nbsp;</td>
 							<td colspan="2">
 								<table class="table table-condensed total-result">
 									<tr>
 										<td>Cart Sub Total</td>
-										<td>$59</td>
-									</tr>
-									<tr>
-										<td>Exo Tax</td>
-										<td>$2</td>
+										<td class="subtotal"><?=$total_price?></td>
 									</tr>
 									<tr class="shipping-cost">
 										<td>Shipping Cost</td>
@@ -194,7 +82,11 @@
 									</tr>
 									<tr>
 										<td>Total</td>
-										<td><span>$61</span></td>
+										<td><span class="subtotal"><?=$total_price?></span></td>
+									</tr>
+                                    <tr>
+										<td><span>
+                            <button class="btn btn-primary" type="submit">Оформить заказ</button></span></td>
 									</tr>
 								</table>
 							</td>
@@ -202,4 +94,12 @@
 					</tbody>
 				</table>
 			</div>
+        </div>
 	</section> <!--/#cart_items-->
+    <script>
+        $.(document).ready(function () {
+            $.(".check_out").click(function () {
+                $.(".user-form").submit();
+            })
+        })
+    </script>
