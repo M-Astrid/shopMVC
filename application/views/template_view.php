@@ -26,6 +26,7 @@
 
     <body>
     <!-- header -->
+    <?php print_r(\Components\Cart::get_cart_products()); ?>
     <?=$username?>
         <header id="header"><!--header-->
             <div class="header_top"><!--header_top-->
@@ -63,7 +64,7 @@
                             <div class="shop-menu pull-right">
                                 <ul class="nav navbar-nav">                                    
                                     <li><a href="/cart/"><i class="fa fa-shopping-cart"></i> Корзина
-                                            (<span id="cart-count"><?=$cart::count_items()?></span>)</a></li>
+                                            (<span id="cart-count"><?=\Components\Cart::count_items()?></span>)</a></li>
                                     <?php if (isset($_SESSION['logged_user'])): ?>
                                     <li><a href="/profile/"><i class="fa fa-user"></i> Аккаунт</a></li>
                                     <li><a href="/logout/"><i class="fa fa-unlock"></i> Выйти</a></li>

@@ -8,8 +8,10 @@
             break;
         }
         ?>
-        <p>Вы будете перенаправлены на главную страницу через 3 секунды.</p>
+        <p>Вы будете перенаправлены на главную страницу через 5 секунд.</p>
         <p>Если этого не произошло, щелкните по <a href="/">ссылке</a>.</p>
-        <script src="/js/redirect.js" type="text/javascript"></script>
+        <script>
+            setTimeout("window.location.href='/';",5000);
+        </script>
     </div>
 </div>

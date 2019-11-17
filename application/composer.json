@@ -1,9 +1,15 @@
 {
     "autoload": {
         "psr-4": {
-            "Models\\": "models",
-            "Components\\": "components"
-        }
+            "Components\\": "components/"
+        },
+		"files": [
+			"core/model.php",
+			"core/view.php",
+			"core/controller.php",
+			"core/router.php",			
+			"libs/rb.php"
+		]
     },
     "require": {
         "ext-json": "*"

@@ -54,9 +54,22 @@ class Controller_Auth extends Controller
             if (empty($errors)) {
                 $user = $model->check_email_exists($_POST['email']);
                 if ($user) {
-                    //e-mail существует
+                    //e-mail существует, проверяем пароль
                     if (password_verify($_POST['password'], $user->password)) {
+
+                        // все в порядке, авторизуем
                         $_SESSION['logged_user'] = $user->id;
+
+                        // объединяем корзину из сессии с корзиной пользователя в БД
+                        if (isset($_SESSION['products']))
+                        {
+                            $arr_1 = \Components\Cart::get_cart_products();
+                            $arr_2 = $_SESSION['products'];
+                            $products_in_cart = $arr_1 + $arr_2;
+                            \Components\Cart::save_cart_products($products_in_cart);
+                            unset($_SESSION['products']);
+                        }
+
                         header('Location:/profile/');
                     } else {
                         $errors[] = "Неверный пароль";
@@ -75,7 +88,6 @@ class Controller_Auth extends Controller
     function action_logout()
     {
         unset( $_SESSION['logged_user'] );
-        unset( $_SESSION['products'] );
         header('Location:/');
     }
 }

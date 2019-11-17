@@ -6,11 +6,15 @@ namespace Composer\Autoload;
 
 class ComposerStaticInite986e62b5dc988e165f7caf08675e34f
 {
+    public static $files = array (
+        '66e5ae69ba330194f7181b3a017dc17f' => __DIR__ . '/../..' . '/core/model.php',
+        '6af7fca737debd10e9c0796f972dc504' => __DIR__ . '/../..' . '/core/view.php',
+        '7726ef9eb2eede45a8d57595016c68dd' => __DIR__ . '/../..' . '/core/controller.php',
+        'cc3e04aa0503741e57dfcd3b96a13e53' => __DIR__ . '/../..' . '/core/router.php',
+        '7e44797205160a4796b8051c0d3be4f8' => __DIR__ . '/../..' . '/libs/rb.php',
+    );
+
     public static $prefixLengthsPsr4 = array (
-        'M' => 
-        array (
-            'Models\\' => 7,
-        ),
         'C' => 
         array (
             'Components\\' => 11,
@@ -18,10 +22,6 @@ class ComposerStaticInite986e62b5dc988e165f7caf08675e34f
     );
 
     public static $prefixDirsPsr4 = array (
-        'Models\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/models',
-        ),
         'Components\\' => 
         array (
             0 => __DIR__ . '/../..' . '/components',
@@ -29,7 +29,7 @@ class ComposerStaticInite986e62b5dc988e165f7caf08675e34f
     );
 
     public static $classMap = array (
-        'Components\\Pagination\\Pagination' => __DIR__ . '/../..' . '/components/pagination.php',
+        'Components\\Cart' => __DIR__ . '/../..' . '/components/cart.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

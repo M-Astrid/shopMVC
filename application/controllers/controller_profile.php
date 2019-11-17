@@ -30,7 +30,7 @@ Class Controller_Profile extends Controller
         if ($_SERVER['REQUEST_METHOD'] == 'POST')
         {
             $model = $this->get_model('auth');
-            $user = $model->get_object_by_id('user', $_SESSION['logged_user']);
+            $user = $model->get_object_array_by_id('user', $_SESSION['logged_user']);
             $errors = array();
 
             // check username
@@ -57,11 +57,11 @@ Class Controller_Profile extends Controller
             // no errors, update profile
             if ( !$errors )
             {
-                $model->object_update('user', $_SESSION['logged_user'], $data);
+                Model::update_object('user', $_SESSION['logged_user'], $data);
 
             }
         }
-        $user = $model->get_object_by_id('user', $_SESSION['logged_user']);
+        $user = Model::get_object_array_by_id('user', $_SESSION['logged_user']);
         $this->view->generate('profile_edit_view.php', 'template_view.php', array(
             'errors' => $errors,
             'user' => $user,

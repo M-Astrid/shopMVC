@@ -6,7 +6,7 @@
 				  <li class="active">Shopping Cart</li>
 				</ol>
 			</div>
-            <?php if (isset($_SESSION['products'])): ?>
+            <?php if (!empty($cart)): ?>
 			<div class="table-responsive cart_info">
 				<table class="table table-condensed">
 					<thead>
@@ -35,12 +35,12 @@
 							<td class="cart_quantity">
 								<div class="cart_quantity_button">
                                     <a href="" class="cart_quantity_down" data-id="<?=$product['id']?>"> - </a>
-									<input class="cart_quantity_input" id="quantity_input<?=$product['id']?>" type="text" name="quantity" value="<?=$_SESSION['products'][$product['id']]?>" autocomplete="off" size="2">
+									<input class="cart_quantity_input" id="quantity_input<?=$product['id']?>" type="text" name="quantity" value="<?=$cart[$product['id']]?>" autocomplete="off" size="2">
                                     <a href="" class="cart_quantity_up" data-id="<?=$product['id']?>"> + </a>
 								</div>
 							</td>
 							<td class="cart_total">
-								<p>$ <span class="cart_total_price<?=$product['id']?>"><?=$_SESSION['products'][$product['id']]*$product['price']?></span></p>
+								<p>$ <span class="cart_total_price<?=$product['id']?>"><?=$cart[$product['id']]*$product['price']?></span></p>
 							</td>
 							<td class="cart_delete">
 								<a class="cart_quantity_delete" data-id="<?=$product['id']?>" href="/cart/delete/<?=$product['id']?>"><i class="fa fa-times"></i></a>
@@ -117,7 +117,7 @@
 				<div class="col-sm-6">
                     <div class="total_area">
                         <ul>
-                            <li>Cart Sub Total <span>$<span class="subtotal"><?=$total_price?></span></span></li>
+                            <li>Cart Sub Total <span>$<span class="subtotal"><?php print_r($total_price); ?></span></span></li>
                             <li>Shipping Cost <span>Free</span></li>
                             <li>Total <span>$<span class="subtotal"><?=$total_price?></span></span></li>
                         </ul>

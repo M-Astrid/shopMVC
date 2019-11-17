@@ -11,21 +11,28 @@ Class Controller_Cart extends Controller
 {
     public function action_index()
     {
-        $model = $this->get_model('catalog');
+        // определяем модели
+        $model_catalog = $this->get_model('catalog');
 
-        $categories = $model::get_category_list();
-        $products = array();
+        // получаем список категорий
+        $categories = $model_catalog::get_category_list();
 
-        if (isset($_SESSION['products']))
+        // получаем массив товаров и их количества в корзине
+        $cart = Cart::get_cart_products();
+
+        // если в корзине есть товары, достаем их из БД и считаем общую цену
+        if (!empty($cart))
         {
-            $products_ids = array_keys($_SESSION['products']);
-            $products = $model::get_products_by_ids($products_ids);
+            $products_ids = array_keys($cart);
+            $products = $model_catalog::get_products_by_ids($products_ids);
 
             $total_price = Cart::get_total_price($products);
         }
+        // если товаров нет, в шаблон передастся пустой массив
 
         $this->view->generate("cart_view.php", "template_view.php", array(
             'categories' => $categories,
+            'cart' => $cart,
             'products' => $products,
             'total_price' => $total_price,
         ));
@@ -34,22 +41,23 @@ Class Controller_Cart extends Controller
 
     public function action_checkout ()
     {
-        // определяем модель
-        $model = $this->get_model('catalog');
+        // определяем модели
+        $model_catalog = $this->get_model('catalog');
 
         // получаем список категорий
-        $categories = $model::get_category_list();
+        $categories = $model_catalog::get_category_list();
 
-        // проверяем наличие товаров в корзине
-        if (isset($_SESSION['products']))
+        // получаем массив товаров и их количества в корзине
+        $cart = Cart::get_cart_products();
+
+        // если в корзине есть товары, достаем их из БД и считаем общую цену
+        if (!empty($cart))
         {
-            $products_ids = array_keys($_SESSION['products']);
-            $products = $model::get_products_by_ids($products_ids);
+            $products_ids = array_keys($cart);
+            $products = $model_catalog::get_products_by_ids($products_ids);
 
-            $products_count = Cart::count_items();
             $total_price = Cart::get_total_price($products);
-            $products_isset = true;
-        } else $products_isset = false;
+        } // если товаров нет, в переменной $cart будет пустой массив
 
         // если метод пост
         if ($_SERVER['REQUEST_METHOD'] == "POST")
@@ -74,7 +82,7 @@ Class Controller_Cart extends Controller
             if (empty($errors))
             {
                 $model_order = $this->get_model('order');
-                $order_id = $model_order->create_order($username, $tel, $comment, $_SESSION['logged_user'], $_SESSION['products']);
+                $order_id = $model_order->create_order($username, $tel, $comment, $_SESSION['logged_user'], $cart);
 
                 $admin_email = 'jean.jen@ya.ru';
                 $subject = 'Заказ № '.$order_id;
@@ -90,7 +98,7 @@ Class Controller_Cart extends Controller
             if (isset($_SESSION['logged_user']))
             {
                 $id = $_SESSION['logged_user'];
-                $user = $model->get_object_by_id('user', $id);
+                $user = $model_catalog->get_object_array_by_id('user', $id);
                 $username = $user['username'];
             } else $username = '';
         }
@@ -100,8 +108,7 @@ Class Controller_Cart extends Controller
             'categories' => $categories,
             'username' => $username,
             'products' => $products,
-            'products_isset' => $products_isset,
-            'products_count' => $products_count,
+            'cart' => $cart,
             'total_price' => $total_price,
         ));
 }
@@ -141,7 +148,7 @@ Class Controller_Cart extends Controller
     {
         $model = $this->get_model('catalog');
 
-        $products_ids = array_keys($_SESSION['products']);
+        $products_ids = array_keys(Cart::get_cart_products());
         $products = $model::get_products_by_ids($products_ids);
         $item = $model->get_product_by_id($id);
 

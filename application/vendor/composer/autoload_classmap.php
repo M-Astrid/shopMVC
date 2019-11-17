@@ -6,5 +6,5 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Components\\Pagination\\Pagination' => $baseDir . '/components/pagination.php',
+    'Components\\Cart' => $baseDir . '/components/cart.php',
 );

@@ -12,7 +12,7 @@ class Controller_Product extends Controller
     {
         $model = $this->get_model('catalog');
 
-        $product = $model->get_product_by_id($product_id);
+        $product = $model->get_object_array_by_id($product_id);
 
         $categories = $model->get_category_list();
 
