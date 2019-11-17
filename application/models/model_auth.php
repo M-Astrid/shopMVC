@@ -1,6 +1,7 @@
 <?php
+namespace Models;
 
-class Model_Auth extends Model 
+class Model_Auth extends \Model
 {
     public function create_user($username, $email, $password)
     {

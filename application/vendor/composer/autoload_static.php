@@ -15,6 +15,10 @@ class ComposerStaticInite986e62b5dc988e165f7caf08675e34f
     );
 
     public static $prefixLengthsPsr4 = array (
+        'M' => 
+        array (
+            'Models\\' => 7,
+        ),
         'C' => 
         array (
             'Components\\' => 11,
@@ -22,6 +26,10 @@ class ComposerStaticInite986e62b5dc988e165f7caf08675e34f
     );
 
     public static $prefixDirsPsr4 = array (
+        'Models\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/models',
+        ),
         'Components\\' => 
         array (
             0 => __DIR__ . '/../..' . '/components',
@@ -30,6 +38,11 @@ class ComposerStaticInite986e62b5dc988e165f7caf08675e34f
 
     public static $classMap = array (
         'Components\\Cart' => __DIR__ . '/../..' . '/components/cart.php',
+        'Components\\Pagination' => __DIR__ . '/../..' . '/components/pagination.php',
+        'Models\\Model_Auth' => __DIR__ . '/../..' . '/models/model_auth.php',
+        'Models\\Model_Cart' => __DIR__ . '/../..' . '/models/model_cart.php',
+        'Models\\Model_Catalog' => __DIR__ . '/../..' . '/models/model_catalog.php',
+        'Models\\Model_Order' => __DIR__ . '/../..' . '/models/model_order.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

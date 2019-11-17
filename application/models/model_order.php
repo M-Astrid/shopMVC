@@ -1,4 +1,5 @@
 <?php
+namespace Models;
 /**
  * Created by PhpStorm.
  * User: astrid
@@ -6,7 +7,7 @@
  * Time: 11:39
  */
 
-class Model_Order extends Model
+class Model_Order extends \Model
 {
     public function create_order($name, $tel, $comment, $userid, $products)
     {

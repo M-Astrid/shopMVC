@@ -12,10 +12,10 @@ Class Controller_Cart extends Controller
     public function action_index()
     {
         // определяем модели
-        $model_catalog = $this->get_model('catalog');
+        $model = new Models\Model_Catalog;
 
         // получаем список категорий
-        $categories = $model_catalog::get_category_list();
+        $categories = $model->get_category_list();
 
         // получаем массив товаров и их количества в корзине
         $cart = Cart::get_cart_products();
@@ -24,7 +24,7 @@ Class Controller_Cart extends Controller
         if (!empty($cart))
         {
             $products_ids = array_keys($cart);
-            $products = $model_catalog::get_products_by_ids($products_ids);
+            $products = $model::get_products_by_ids($products_ids);
 
             $total_price = Cart::get_total_price($products);
         }
@@ -41,11 +41,11 @@ Class Controller_Cart extends Controller
 
     public function action_checkout ()
     {
-        // определяем модели
-        $model_catalog = $this->get_model('catalog');
+        // определяем модель
+        $model = new Models\Model_Catalog;
 
         // получаем список категорий
-        $categories = $model_catalog::get_category_list();
+        $categories = $model->get_category_list();
 
         // получаем массив товаров и их количества в корзине
         $cart = Cart::get_cart_products();
@@ -54,7 +54,7 @@ Class Controller_Cart extends Controller
         if (!empty($cart))
         {
             $products_ids = array_keys($cart);
-            $products = $model_catalog::get_products_by_ids($products_ids);
+            $products = $model::get_products_by_ids($products_ids);
 
             $total_price = Cart::get_total_price($products);
         } // если товаров нет, в переменной $cart будет пустой массив
@@ -98,7 +98,7 @@ Class Controller_Cart extends Controller
             if (isset($_SESSION['logged_user']))
             {
                 $id = $_SESSION['logged_user'];
-                $user = $model_catalog->get_object_array_by_id('user', $id);
+                $user = $model->get_object_array_by_id('user', $id);
                 $username = $user['username'];
             } else $username = '';
         }
@@ -146,7 +146,7 @@ Class Controller_Cart extends Controller
 
     public function action_refresh_prices($id)
     {
-        $model = $this->get_model('catalog');
+        $model = new Models\Model_Catalog;
 
         $products_ids = array_keys(Cart::get_cart_products());
         $products = $model::get_products_by_ids($products_ids);

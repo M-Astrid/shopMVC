@@ -1,7 +1,7 @@
 <?php
-//namespace Models;
+namespace Models;
 
-class Model_Catalog extends Model
+class Model_Catalog extends \Model
 {
     const SHOW_BY_DEFAULT = 2;
 

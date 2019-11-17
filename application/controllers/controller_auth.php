@@ -5,7 +5,7 @@ class Controller_Auth extends Controller
     
     function action_signup()
     {
-        $model = $this->get_model('auth');
+        $model = new \Models\Model_Auth;
         $errors = array();
 
         if ( $_SERVER['REQUEST_METHOD'] == 'POST')
@@ -50,7 +50,7 @@ class Controller_Auth extends Controller
 
 
             // no errors. try to find user
-            $model = $this->get_model('auth');
+            $model = new \Models\Model_Auth;
             if (empty($errors)) {
                 $user = $model->check_email_exists($_POST['email']);
                 if ($user) {

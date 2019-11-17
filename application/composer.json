@@ -1,7 +1,8 @@
 {
     "autoload": {
         "psr-4": {
-            "Components\\": "components/"
+            "Components\\": "components/",
+            "Models\\": "models/"
         },
 		"files": [
 			"core/model.php",

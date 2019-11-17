@@ -29,7 +29,7 @@ Class Controller_Profile extends Controller
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST')
         {
-            $model = $this->get_model('auth');
+            $model = new \Models\Model_Auth;
             $user = $model->get_object_array_by_id('user', $_SESSION['logged_user']);
             $errors = array();
 

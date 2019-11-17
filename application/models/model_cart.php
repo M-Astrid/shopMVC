@@ -1,11 +1,12 @@
 <?php
+namespace Models;
 /**
  * Created by PhpStorm.
  * User: astrid
  * Date: 16.11.2019
  * Time: 18:00
  */
-Class Model_Cart extends Model
+Class Model_Cart extends \Model
 {
     // если пользователь авторизован, отдает его корзину массивом из БД, если нет - из сессии
     public function get_cart_products()

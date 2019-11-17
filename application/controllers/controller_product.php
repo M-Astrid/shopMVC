@@ -10,9 +10,9 @@ class Controller_Product extends Controller
 {
     public function action_detail($product_id)
     {
-        $model = $this->get_model('catalog');
+        $model = new \Models\Model_Catalog;
 
-        $product = $model->get_object_array_by_id($product_id);
+        $product = Model::get_object_array_by_id('product', $product_id);
 
         $categories = $model->get_category_list();
 
