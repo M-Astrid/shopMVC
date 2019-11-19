@@ -39,10 +39,7 @@ class ComposerStaticInite986e62b5dc988e165f7caf08675e34f
     public static $classMap = array (
         'Components\\Cart' => __DIR__ . '/../..' . '/components/cart.php',
         'Components\\Pagination' => __DIR__ . '/../..' . '/components/pagination.php',
-        'Models\\Model_Auth' => __DIR__ . '/../..' . '/models/model_auth.php',
-        'Models\\Model_Cart' => __DIR__ . '/../..' . '/models/model_cart.php',
         'Models\\Model_Catalog' => __DIR__ . '/../..' . '/models/model_catalog.php',
-        'Models\\Model_Order' => __DIR__ . '/../..' . '/models/model_order.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

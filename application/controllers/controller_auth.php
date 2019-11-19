@@ -1,11 +1,12 @@
 <?php
+use Models\Model_Auth;
 
 class Controller_Auth extends Controller
 {
     
     function action_signup()
     {
-        $model = new \Models\Model_Auth;
+        $model = new Model_Auth();
         $errors = array();
 
         if ( $_SERVER['REQUEST_METHOD'] == 'POST')
@@ -36,6 +37,8 @@ class Controller_Auth extends Controller
 
     function action_login()
     {
+        $model = new Model_Auth();
+
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $errors = array();
 
@@ -50,7 +53,6 @@ class Controller_Auth extends Controller
 
 
             // no errors. try to find user
-            $model = new \Models\Model_Auth;
             if (empty($errors)) {
                 $user = $model->check_email_exists($_POST['email']);
                 if ($user) {
@@ -78,6 +80,10 @@ class Controller_Auth extends Controller
                     $errors[] = "Пользователя с таким E-mail не существует";
                 }
             }
+        }
+        if (isset($_SESSION['logged_user']))
+        {
+            header("Location: /");
         }
         $this->view->generate('login_view.php', 'template_view.php', array(
                 'errors' => $errors

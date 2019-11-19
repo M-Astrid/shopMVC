@@ -8,8 +8,5 @@ $baseDir = dirname($vendorDir);
 return array(
     'Components\\Cart' => $baseDir . '/components/cart.php',
     'Components\\Pagination' => $baseDir . '/components/pagination.php',
-    'Models\\Model_Auth' => $baseDir . '/models/model_auth.php',
-    'Models\\Model_Cart' => $baseDir . '/models/model_cart.php',
     'Models\\Model_Catalog' => $baseDir . '/models/model_catalog.php',
-    'Models\\Model_Order' => $baseDir . '/models/model_order.php',
 );

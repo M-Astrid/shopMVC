@@ -1,5 +1,6 @@
 <?php
 namespace Models;
+use \R;
 
 class Model_Auth extends \Model
 {
@@ -70,10 +71,5 @@ class Model_Auth extends \Model
         }
 
         return $errors;
-    }
-
-    public function check_logged()
-    {
-        return isset($_SESSION['logged_user']);
     }
 }

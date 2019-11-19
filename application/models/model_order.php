@@ -1,5 +1,6 @@
 <?php
 namespace Models;
+use \R;
 /**
  * Created by PhpStorm.
  * User: astrid

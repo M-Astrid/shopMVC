@@ -6,16 +6,17 @@
  * Time: 12:11
  */
 use Components\Cart;
+use Models\Model_Catalog;
 
 Class Controller_Cart extends Controller
 {
     public function action_index()
     {
-        // определяем модели
-        $model = new Models\Model_Catalog;
+        // определяем модель
+        $model = new Model_Catalog();
 
         // получаем список категорий
-        $categories = $model->get_category_list();
+        $categories = $model::get_category_list();
 
         // получаем массив товаров и их количества в корзине
         $cart = Cart::get_cart_products();
@@ -41,11 +42,11 @@ Class Controller_Cart extends Controller
 
     public function action_checkout ()
     {
-        // определяем модель
-        $model = new Models\Model_Catalog;
+        // определяем модели
+        $model = new Model_Catalog();
 
         // получаем список категорий
-        $categories = $model->get_category_list();
+        $categories = $model::get_category_list();
 
         // получаем массив товаров и их количества в корзине
         $cart = Cart::get_cart_products();
@@ -146,7 +147,7 @@ Class Controller_Cart extends Controller
 
     public function action_refresh_prices($id)
     {
-        $model = new Models\Model_Catalog;
+        $model = new Model_Catalog();
 
         $products_ids = array_keys(Cart::get_cart_products());
         $products = $model::get_products_by_ids($products_ids);

@@ -1,5 +1,6 @@
 <?php
 namespace Models;
+use \R;
 
 class Model_Catalog extends \Model
 {
