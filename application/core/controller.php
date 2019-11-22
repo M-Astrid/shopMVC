@@ -10,6 +10,7 @@ class Controller {
     {
         $this->view = new View();
     }
+
     public function get_model($name)
     {
         require_once ROOT."/models/model_$name.php";

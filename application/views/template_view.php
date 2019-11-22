@@ -26,7 +26,6 @@
 
     <body>
     <!-- header -->
-    <?php print_r(\Components\Cart::get_cart_products()); ?>
     <?=$username?>
         <header id="header"><!--header-->
             <div class="header_top"><!--header_top-->

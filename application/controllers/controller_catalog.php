@@ -15,7 +15,7 @@ class Controller_Catalog extends Controller
     {
         $model = new Model_Catalog();
 
-        $categories = $model->get_category_list();
+        $categories = $model::get_categories_list();
         $products = $model->get_products_by_category($category_id, $page);
         $total = $model::get_total_products_in_category($category_id);
         $paginator = new Pagination($total, $page, Model_Catalog::SHOW_BY_DEFAULT, 'page-');

@@ -15,9 +15,6 @@ Class Controller_Cart extends Controller
         // определяем модель
         $model = new Model_Catalog();
 
-        // получаем список категорий
-        $categories = $model::get_category_list();
-
         // получаем массив товаров и их количества в корзине
         $cart = Cart::get_cart_products();
 
@@ -32,7 +29,6 @@ Class Controller_Cart extends Controller
         // если товаров нет, в шаблон передастся пустой массив
 
         $this->view->generate("cart_view.php", "template_view.php", array(
-            'categories' => $categories,
             'cart' => $cart,
             'products' => $products,
             'total_price' => $total_price,
@@ -44,9 +40,6 @@ Class Controller_Cart extends Controller
     {
         // определяем модели
         $model = new Model_Catalog();
-
-        // получаем список категорий
-        $categories = $model::get_category_list();
 
         // получаем массив товаров и их количества в корзине
         $cart = Cart::get_cart_products();
@@ -106,7 +99,6 @@ Class Controller_Cart extends Controller
 
         $this->view->generate("checkout_view.php", "template_view.php", array(
             'errors' => $errors,
-            'categories' => $categories,
             'username' => $username,
             'products' => $products,
             'cart' => $cart,

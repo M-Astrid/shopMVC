@@ -6,9 +6,19 @@
  * Time: 11:47
  */
 
-// uripattern => path
+// uripattern => path(controller/action/vars)
 return array (
     '^$' => 'main',
+
+    '^admin$' => 'admin/index',
+    '^admin/products$' => 'admin_products/products_list',
+    '^admin/products/([\d]+)' => 'admin_products/update/$1',
+    '^admin/products/create' => 'admin_products/create',
+    '^admin/products/delete([\d]+)' => 'admin_products/delete/$1',
+    '^admin/orders$' => 'admin/orders_list',
+    '^admin/orders/([\d]+)' => 'admin/edit_order/$1',
+    '^admin/categories$' => 'admin/categories_list',
+    '^admin/categories/([\d]+)' => 'admin/edit_category/$1',
 
     '^signup' => 'auth/signup',
     '^login' => 'auth/login',
