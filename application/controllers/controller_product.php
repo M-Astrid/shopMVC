@@ -5,16 +5,17 @@
  * Date: 18.10.2019
  * Time: 15:58
  */
+use Models\Model_Catalog;
 
 class Controller_Product extends Controller
 {
     public function action_detail($product_id)
     {
-        $model = new \Models\Model_Catalog;
+        $model = new Model_Catalog();
 
-        $product = Model::get_object_array_by_id('product', $product_id);
+        $product = $model->get_object_array_by_id('product', $product_id);
 
-        $categories = $model->get_category_list();
+        $categories = $model::get_categories_list();
 
         $this->view->generate('product_detail_view.php', 'template_view.php', array(
             'product' => $product,

@@ -1,11 +1,12 @@
 <?php
 namespace Models;
+use \R;
 
 class Model_Catalog extends \Model
 {
     const SHOW_BY_DEFAULT = 2;
 
-	public function get_category_list()
+	public static function get_categories_list()
 	{
 	    $category_list = R::getAll("SELECT id, name FROM category ORDER BY sort_order ASC");
 	    return $category_list;

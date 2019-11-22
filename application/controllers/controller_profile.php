@@ -5,31 +5,26 @@
  * Date: 07.11.2019
  * Time: 17:28
  */
+use Models\Model_Auth;
 
 Class Controller_Profile extends Controller
 {
-    private function check_logged()
-    {
-        if (isset($_SESSION['logged_user']))
-        {
-            return true;
-        } else header('Location:/login/');
-    }
-
     public function action_index()
     {
-        $this->check_logged();
+        // проверяем, авторизован ли пользователь
+        \Components\User::check_logged();
 
         $this->view->generate('profile_view.php', 'template_view.php');
     }
 
     public function action_edit()
     {
-        $this->check_logged();
+        // проверяем, авторизован ли пользователь
+        \Components\User::check_logged();
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST')
         {
-            $model = new \Models\Model_Auth;
+            $model = new Model_Auth();
             $user = $model->get_object_array_by_id('user', $_SESSION['logged_user']);
             $errors = array();
 
