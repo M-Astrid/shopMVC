@@ -7,55 +7,18 @@
  */
 class Controller_Admin_Products extends \Components\Admin
 {
-    public function action_products_list()
+    public function action_create()
     {
         // проверяем права доступа
         self::check_admin();
 
-        // получаем список товаров
-        $products = \Model::get_all_objects('product');
-
-        $this->view->generate('admin\products_view.php', 'admin\template_view.php', array(
-            'products' => $products,
-        ));
-    }
-
-    public function action_delete($id)
-    {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST' and isset($_POST['submit']))
-        {
-            \Model::delete_object('product', $id);
-            header("Location: /admin/products/");
-        }
-        $this->view->generate('admin/products_delete_view.php','admin/template_view.php', array(
-            "id" => $id,
-            ));
-    }
-/*
- * универсальный метод
-    public function action_delete($table, $id, $message = "Вы действительно хотите удалить объект #$id?") //controller
-    {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST')
-        {
-            \Model::delete_object('product', $id);
-            $referer = preg_replace("~delete/[\d]+~", "", $_SERVER['HTTP_REFERER']);
-            header("Location: $referer");
-        }
-
-        $this->view->generate('admin/product/delete_view.php','admin/template_view.php', array(
-            "message" => $message,
-        ));
-}
-*/
-    public function action_update($id)
-    {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST')
+        if (isset($_POST['submit']))
         {
             $data = array();
             $errors = array();
 
             // определяем необходимые поля
-            $fields = ['name', 'category_id', 'code', 'price', 'availability', 'brand', 'img', 'description', 'is_new', 'is_recommended', 'display'];
+            $fields = ['name', 'category_id', 'code', 'price', 'availability', 'brand',/*'img',*/ 'description', 'is_new', 'is_recommended',  'display'];
 
             // валидация данных
             if ($_POST['name'] == '') $errors[] = 'Укажите название товара';
@@ -63,37 +26,7 @@ class Controller_Admin_Products extends \Components\Admin
             if ($_POST['price'] == '') $errors[] = 'Укажите цену товара';
 
             // если ошибок нет, получаем данные из указанных полей формы и заполныем ими массив
-            if (!isset($errors)) {
-                foreach ($fields as $field) {
-                    $data[$field] = $_POST[$field];
-                }
-
-                \Model::update_object('product', $id, $data);
-            }
-        }
-        $product = \Model::get_object_array_by_id('product', $id);
-        $this->view->generate('admin/product_update_view.php','admin/template_view.php', array(
-            "product" => $product,
-        ));
-    }
-
-    public function action_create()
-    {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST')
-        {
-            $data = array();
-            $errors = array();
-
-            // определяем необходимые поля
-            $fields = ['name', 'category_id', 'code', 'price', 'availability', 'brand', 'img', 'description', 'is_new', 'is_recommended',  'display'];
-
-            // валидация данных
-            if ($_POST['name'] == '') $errors[] = 'Укажите название товара';
-            if ($_POST['code'] == '') $errors[] = 'Укажите артикул';
-            if ($_POST['price'] == '') $errors[] = 'Укажите цену товара';
-
-            // если ошибок нет, получаем данные из указанных полей формы и заполныем ими массив
-            if (!isset($errors))
+            if (empty($errors))
             {
                 foreach ($fields as $field)
                 {
@@ -108,10 +41,79 @@ class Controller_Admin_Products extends \Components\Admin
             }
         }
         $categories = \Models\Model_Catalog::get_categories_list();
-        $this->view->generate('admin/products_create_view.php','admin/template_view.php', array(
+        $this->view->generate('admin/product_create_view.php','admin/template_view.php', array(
             "product" => $product,
             "categories" => $categories,
             "errors" => $errors,
         ));
-}
+    }
+
+    public function action_list()
+    {
+        // проверяем права доступа
+        self::check_admin();
+
+        // получаем список товаров
+        $products = \Model::get_all_objects('product');
+
+        $this->view->generate('admin\products_view.php', 'admin\template_view.php', array(
+            'products' => $products,
+        ));
+    }
+
+    public function action_update($id)
+    {
+        // проверяем права доступа
+        self::check_admin();
+
+        $product = \Model::get_object_array_by_id('product', $id);
+
+        if (isset($_POST['submit']))
+        {
+            $data = array();
+            $errors = array();
+
+            // определяем необходимые поля
+            $fields = ['name', 'category_id', 'code', 'price', 'availability', 'brand', /*'img',*/ 'description', 'is_new', 'is_recommended', 'display'];
+
+            // валидация данных
+            if ($_POST['name'] == '') $errors[] = 'Укажите название товара';
+            if ($_POST['code'] == '') $errors[] = 'Укажите артикул';
+            if ($_POST['price'] == '') $errors[] = 'Укажите цену товара';
+
+            // если ошибок нет, получаем данные из указанных полей формы и заполныем ими массив
+            if (empty($errors))
+            {
+                foreach ($fields as $field) {
+                    if ($product[$field] != $_POST[$field])
+                    {
+                        $data[$field] = $_POST[$field];
+                    }
+                }
+                \Model::update_object('product', $id, $data);
+                header("Location: /admin/products/");
+            }
+        }
+        $categories = \Model::get_all_objects('category');
+        $this->view->generate('admin/product_update_view.php','admin/template_view.php', array(
+            "product" => $product,
+            'categories' => $categories,
+            'errors' => $errors,
+        ));
+    }
+
+    public function action_delete($id)
+    {
+        // проверяем права доступа
+        self::check_admin();
+
+        if (isset($_POST['submit']))
+        {
+            \Model::delete_object('product', $id);
+            header("Location: /admin/products/");
+        }
+        $this->view->generate('admin/product_delete_view.php','admin/template_view.php', array(
+            "id" => $id,
+        ));
+    }
 }

@@ -4,15 +4,6 @@
 
             <br/>
 
-            <div class="breadcrumbs">
-                <ol class="breadcrumb">
-                    <li><a href="/admin">Админпанель</a></li>
-                    <li><a href="/admin/product">Управление товарами</a></li>
-                    <li class="active">Удалить товар</li>
-                </ol>
-            </div>
-
-
             <h4>Удалить товар #<?php echo $id; ?></h4>
 
 
