@@ -47,7 +47,7 @@
                                             <span>US $<?=$product['price']?></span>
                                             <label>Количество:</label>
                                             <input class="quantity" type="number" value="1" />
-                                            <button type="button" class="btn btn-fefault cart" data-id="<?=$product['id']?>" onclick="">
+                                            <button type="button" class="btn btn-default cart add" data-id="<?=$product['id']?>" onclick="add_to_cart()">
                                                 <i class="fa fa-shopping-cart"></i>
                                                 В корзину
                                             </button>

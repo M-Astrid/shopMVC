@@ -108,9 +108,9 @@ Class Controller_Cart extends Controller
 
 
     // Ajax responses
-    public function action_add($id)
+    public function action_add($id, $quantity=1)
     {
-        echo Cart::add_product($id);
+        echo Cart::add_product($id, $quantity);
         return true;
     }
 

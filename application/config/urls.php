@@ -49,6 +49,7 @@ return array (
     '^product/([\d]+)' => 'product/detail/$1',
 
     '^cart/add/([\d]+)$' => 'cart/add/$1',
+    '^cart/add/([\d]+)/([\d]+)$' => 'cart/add/$1/$2',
     '^cart/delete/([\d]+)$' => 'cart/delete/$1',
     '^cart/q_up/([\d]+)$' => 'cart/q_up/$1',
     '^cart/q_down/([\d]+)$' => 'cart/q_down/$1',

@@ -12,7 +12,7 @@ class Cart
     }
 
 
-    public static function add_product($id)
+    public static function add_product($id, $quantity)
     {
         $id = intval($id);
 
@@ -20,10 +20,10 @@ class Cart
 
         if (array_key_exists($id, $products_in_cart))
         {
-            $products_in_cart[$id] ++;
+            $products_in_cart[$id] += $quantity;
         } else
         {
-            $products_in_cart[$id] = 1;
+            $products_in_cart[$id] = $quantity;
         }
 
         self::save_cart_products($products_in_cart);
