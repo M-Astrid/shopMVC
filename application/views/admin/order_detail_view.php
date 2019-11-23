@@ -34,7 +34,7 @@
                 <?php endif; ?>
                 <tr>
                     <td><b>Статус заказа</b></td>
-                    <td><?php //echo Order::getStatusText($order['status']); ?></td>
+                    <td><?=\Components\Order::STATUS_MESSAGE[$order['status']]?></td>
                 </tr>
                 <tr>
                     <td><b>Дата заказа</b></td>

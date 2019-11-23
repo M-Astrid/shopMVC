@@ -33,7 +33,7 @@
                             <div class="row">
                                 <div class="col-sm-5">
                                     <div class="view-product">
-                                        <img src="/images/shop/<?=$product['img']?>" alt="" />
+                                        <img src="<?=\Components\Product::get_image($product['id'])?>" alt="" />
                                     </div>
                                 </div>
                                 <div class="col-sm-7">
@@ -46,8 +46,8 @@
                                         <span>
                                             <span>US $<?=$product['price']?></span>
                                             <label>Количество:</label>
-                                            <input type="text" value="1" />
-                                            <button type="button" class="btn btn-fefault cart">
+                                            <input class="quantity" type="number" value="1" />
+                                            <button type="button" class="btn btn-fefault cart" data-id="<?=$product['id']?>" onclick="">
                                                 <i class="fa fa-shopping-cart"></i>
                                                 В корзину
                                             </button>

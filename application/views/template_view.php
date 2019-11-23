@@ -136,6 +136,17 @@
         <script src="/js/main.js"></script>
 
         <script>
+             function add_to_cart() {
+                 var id = $(this).attr("data-id");
+                 var quantity = $(".quantity").val();
+                 $.post("/cart/add/"+id, {}, function(data){
+                     $("#cart-count").html(data);
+                 });
+                 return false;
+             }
+        </script>
+
+        <script>
             $(document).ready(function(){
                 $(".add-to-cart").click(function() {
                     var id = $(this).attr("data-id");

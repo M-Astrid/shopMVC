@@ -75,8 +75,8 @@ Class Controller_Cart extends Controller
             // если верно, добавляем заказ в БД и отправляем емэйл менеджеру
             if (empty($errors))
             {
-                $model_order = $this->get_model('order');
-                $order_id = $model_order->create_order($username, $tel, $comment, $_SESSION['logged_user'], $cart);
+                $model = new \Models\Model_Order;
+                $order_id = $model->create_order($username, $tel, $comment, $_SESSION['logged_user'], $cart);
 
                 $admin_email = 'jean.jen@ya.ru';
                 $subject = 'Заказ № '.$order_id;

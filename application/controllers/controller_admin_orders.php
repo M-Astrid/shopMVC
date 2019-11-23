@@ -39,21 +39,28 @@ class Controller_Admin_Orders extends \Components\Admin
         // проверяем права доступа
         self::check_admin();
 
+        $order = \Model::get_object_array_by_id('orders', $id);
+        $order_products = json_decode($order['products'], true);
+
         if (isset($_POST['submit']))
         {
             $data = array();
 
             // определяем необходимые поля
-            $fields = ['name', 'tel', 'comment', 'products'];
+            $fields = ['name', 'tel', 'comment', 'status'];
 
             foreach ($fields as $field)
             {
-                $data[$field] = $_POST[$field];
+                if ($_POST[$field] != $order[$field])
+                {
+                    $data[$field] = $_POST[$field];
+                }
             }
+            //$data['products'] = $order_products;
+
             \Model::update_object('orders', $id, $data);
             header("Location: /admin/orders/$id");
         }
-        $order = \Model::get_object_array_by_id('orders', $id);
         $this->view->generate('admin/order_update_view.php','admin/template_view.php', array(
             "order" => $order,
         ));

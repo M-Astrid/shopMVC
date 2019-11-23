@@ -11,16 +11,16 @@ class Controller {
         $this->view = new View();
     }
 
-    public function get_model($name)
-    {
-        require_once ROOT."/models/model_$name.php";
-        $model_name = 'Model_'.ucfirst($name);
-        return new $model_name;
-    }
-
     // действие (action), вызываемое по умолчанию
     function action_index()
     {
         // todo
+    }
+
+    public function action_success($type)
+    {
+        $this->view->generate('success_view.php', 'template_view.php', array(
+            'type' => $type,
+        ));
     }
 }

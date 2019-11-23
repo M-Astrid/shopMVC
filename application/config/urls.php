@@ -17,13 +17,15 @@ return array (
     '^admin/products/create' => 'admin_products/create',
     '^admin/products/delete/([\d]+)' => 'admin_products/delete/$1',
 
+    '^admin/categories$' => 'admin_categories/list',
+    '^admin/categories/([\d]+)' => 'admin_categories/update/$1',
+    '^admin/categories/create' => 'admin_categories/create',
+    '^admin/categories/delete/([\d]+)' => 'admin_categories/delete/$1',
+
     '^admin/orders$' => 'admin_orders/list',
     '^admin/orders/([\d]+)' => 'admin_orders/detail/$1',
     '^admin/orders/update/([\d]+)' => 'admin_orders/update/$1',
     '^admin/orders/delete/([\d]+)' => 'admin_orders/delete/$1',
-
-    '^admin/categories$' => 'admin/categories_list',
-    '^admin/categories/([\d]+)' => 'admin/edit_category/$1',
 
 
     '^signup' => 'auth/signup',

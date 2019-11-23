@@ -44,7 +44,7 @@
                     <?php foreach ($products as $product): ?>
                         <tr id="item<?=$product['id']?>">
                             <td class="cart_product">
-                                <a href="/product/<?=$product['id']?>"><img src="/images/shop/<?=$product['img']?>" alt=""></a>
+                                <a href="/product/<?=$product['id']?>"><img src="<?=\Components\Product::get_image($product['id'])?>" alt=""></a>
                             </td>
                             <td class="cart_description">
                                 <h4><a href="/product/<?=$product['id']?>">Colorblock Scuba</a></h4>

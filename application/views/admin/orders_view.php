@@ -30,7 +30,7 @@
                         <td><?php echo $order['name']; ?></td>
                         <td><?php echo $order['tel']; ?></td>
                         <td><?php echo $order['date']; ?></td>
-                        <td><?php // echo Order::getStatusText($order['status']); ?></td>
+                        <td><?=\Components\Order::STATUS_MESSAGE[$order['status']]; ?></td>
                         <td><a href="/admin/orders/<?php echo $order['id']; ?>" title="Смотреть"><i class="fa fa-eye"></i></a></td>
                         <td><a href="/admin/orders/update/<?php echo $order['id']; ?>" title="Редактировать"><i class="fa fa-pencil-square-o"></i></a></td>
                         <td><a href="/admin/orders/delete/<?php echo $order['id']; ?>" title="Удалить"><i class="fa fa-times"></i></a></td>

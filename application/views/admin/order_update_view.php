@@ -26,13 +26,14 @@
 
                         <p>Статус</p>
                         <select name="status">
-                            <option value="1" <?php if ($order['status'] == 1) echo ' selected="selected"'; ?>>Новый заказ</option>
-                            <option value="2" <?php if ($order['status'] == 2) echo ' selected="selected"'; ?>>В обработке</option>
-                            <option value="3" <?php if ($order['status'] == 3) echo ' selected="selected"'; ?>>Доставляется</option>
-                            <option value="4" <?php if ($order['status'] == 4) echo ' selected="selected"'; ?>>Закрыт</option>
+                            <?php foreach(\Components\Order::STATUS_MESSAGE as $key => $value): ?>
+                                <option value="<?=$key?>" <?php if ($order['status'] == $key) echo ' selected="selected"'; ?>><?=$value?></option>
+                            <?php endforeach; ?>
                         </select>
+
                         <br>
                         <br>
+
                         <input type="submit" name="submit" class="btn btn-default" value="Сохранить">
                     </form>
                 </div>

@@ -4,7 +4,7 @@ use \R;
 
 class Model_Catalog extends \Model
 {
-    const SHOW_BY_DEFAULT = 2;
+    const SHOW_BY_DEFAULT = 3;
 
 	public static function get_categories_list()
 	{
@@ -39,8 +39,8 @@ class Model_Catalog extends \Model
     {
         if ($category_id=="0")
         {
-            $count = R::count('product');
-        } else $count = R::count('product', "category_id = ?", [$category_id]);
+            $count = R::count('product', 'display = ?', [1]);
+        } else $count = R::count('product', "category_id = ? AND display = ?", [$category_id, 1]);
         return $count;
     }
 
