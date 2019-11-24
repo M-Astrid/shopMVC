@@ -7,12 +7,17 @@
  */
 namespace Components;
 
-class Order
+class Status
 {
-    const STATUS_MESSAGE = array(
+    const ORDER_STATUS_MESSAGE = array(
         '1' => "Новый",
         '2' => "В обработке",
         '3' => "Доставляется",
         '4' => "Закрыт",
+    );
+
+    const DISPLAY_STATUS_MESSAGE = array(
+        '1' => "Отображать",
+        '0' => "Скрыть",
     );
 }

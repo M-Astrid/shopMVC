@@ -3,6 +3,12 @@
         <div class="row">
 
             <br/>
+            <?php if ($errors != null): ?>
+                <?php foreach ($errors as $error): ?>
+                    <div id="errors" style="color: red;"><li> <?=$error?> </li></div>
+                <?php endforeach; ?>
+                <br/>
+            <?php endif; ?>
 
             <h4>Редактировать категорию "<?php echo $category['name']; ?>"</h4>
 

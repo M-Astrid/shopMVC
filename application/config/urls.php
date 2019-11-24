@@ -21,6 +21,7 @@ return array (
     '^admin/categories/([\d]+)' => 'admin_categories/update/$1',
     '^admin/categories/create' => 'admin_categories/create',
     '^admin/categories/delete/([\d]+)' => 'admin_categories/delete/$1',
+    '^admin/categories/update/([\d]+)' => 'admin_categories/update/$1',
 
     '^admin/orders$' => 'admin_orders/list',
     '^admin/orders/([\d]+)' => 'admin_orders/detail/$1',

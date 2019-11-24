@@ -26,7 +26,7 @@
 
                         <p>Статус</p>
                         <select name="status">
-                            <?php foreach(\Components\Order::STATUS_MESSAGE as $key => $value): ?>
+                            <?php foreach(\Components\Status::ORDER_STATUS_MESSAGE as $key => $value): ?>
                                 <option value="<?=$key?>" <?php if ($order['status'] == $key) echo ' selected="selected"'; ?>><?=$value?></option>
                             <?php endforeach; ?>
                         </select>

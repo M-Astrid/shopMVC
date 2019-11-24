@@ -22,7 +22,7 @@
                         <td><?php echo $category['id']; ?></td>
                         <td><?php echo $category['name']; ?></td>
                         <td><?php echo $category['sort_order']; ?></td>
-                        <td><?=\Components\Category::STATUS_MESSAGE['status']?></td>
+                        <td><?=\Components\Status::DISPLAY_STATUS_MESSAGE[$category['status']]?></td>
                         <td><a href="/admin/category/update/<?php echo $category['id']; ?>" title="Редактировать"><i class="fa fa-pencil-square-o"></i></a></td>
                         <td><a href="/admin/category/delete/<?php echo $category['id']; ?>" title="Удалить"><i class="fa fa-times"></i></a></td>
                     </tr>

@@ -68,7 +68,7 @@ class Controller_Admin_Categories extends \Components\Admin
             // если ошибок нет, получаем данные из указанных полей формы и заполныем ими массив
             if (empty($errors))
             {
-                $fields = ['name', 'display'];
+                $fields = ['name', 'display', 'sort_order'];
                 foreach ($fields as $field)
                 {
                     if ($category['$field'] != $_POST[$field])
