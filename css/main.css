@@ -1310,6 +1310,10 @@ h2.title {
 	padding-right: 0;
 }
 
+.cycle-slideshow {
+  width: 60%
+}
+
 
 #reviews ul {
   background: #FFFFFF;

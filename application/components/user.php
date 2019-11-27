@@ -7,7 +7,7 @@
  */
 namespace Components;
 
-class User
+abstract class User extends \Controller
 {
     public static function check_logged()
     {
@@ -16,5 +16,27 @@ class User
             header("Location: /login/");
         }
         else return $_SESSION['logged_user'];
+    }
+
+    public static function check_admin()
+    {
+        $id = User::check_logged();
+        $user = \Model::get_object_array_by_id('user', $id);
+        if ( $user['role'] == 'admin' )
+        {
+            return true;
+        }
+        else die('Нет прав доступа');
+    }
+
+    public static function is_admin()
+    {
+        $id = User::check_logged();
+        $user = \Model::get_object_array_by_id('user', $id);
+        if ( $user['role'] == 'admin' )
+        {
+            return true;
+        }
+        else return false;
     }
 }

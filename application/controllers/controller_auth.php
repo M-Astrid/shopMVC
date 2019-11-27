@@ -71,7 +71,10 @@ class Controller_Auth extends Controller
                             \Components\Cart::save_cart_products($products_in_cart);
                             unset($_SESSION['products']);
                         }
-
+                        if (\Components\User::is_admin())
+                        {
+                            header('Location:/admin/');
+                        }
                         header('Location:/profile/');
                     } else {
                         $errors[] = "Неверный пароль";

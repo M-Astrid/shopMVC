@@ -5,7 +5,7 @@
  * Date: 20.11.2019
  * Time: 19:50
  */
-class Controller_Admin_Products extends \Components\Admin
+class Controller_Admin_Products extends Components\User
 {
     public function action_create()
     {
@@ -19,7 +19,7 @@ class Controller_Admin_Products extends \Components\Admin
             $data = array();
 
             // определяем необходимые поля
-            $fields = ['name', 'category_id', 'code', 'price', 'availability', 'brand',/*'img',*/ 'description', 'is_new', 'is_recommended',  'display'];
+            $fields = ['name', 'category_id', 'code', 'price', 'availability', 'brand', 'description', 'is_new', 'is_recommended',  'display'];
 
             // валидация данных
             if ($_POST['name'] == '') $errors[] = 'Укажите название товара';

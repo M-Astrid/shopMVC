@@ -5,7 +5,7 @@
  * Date: 22.11.2019
  * Time: 14:36
  */
-class Controller_Admin_Orders extends \Components\Admin
+class Controller_Admin_Orders extends Components\User
 {
     public function action_list()
     {

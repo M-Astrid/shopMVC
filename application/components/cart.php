@@ -2,17 +2,9 @@
 namespace Components;
 use \Model;
 
-class Cart
+abstract class Cart extends \Controller
 {
-    //очистка корзины
-    public static function clear()
-    {
-        $products_in_cart = array();
-        self::save_cart_products($products_in_cart);
-    }
-
-
-    public static function add_product($id, $quantity)
+    public function action_add($id, $quantity=1)
     {
         $id = intval($id);
 
@@ -28,11 +20,11 @@ class Cart
 
         self::save_cart_products($products_in_cart);
 
-        return self::count_items();
+        echo self::count_items();
     }
 
 
-    public static function delete_product($id)
+    public function action_delete($id)
     {
         $products_in_cart = self::get_cart_products();
         unset($products_in_cart[$id]);
@@ -42,17 +34,17 @@ class Cart
     }
 
 
-    public static function q_up($id)
+    public function action_q_up($id)
     {
         $id = intval($id);
         $products_in_cart = self::get_cart_products();
         $products_in_cart[$id] ++;
         self::save_cart_products($products_in_cart);
-        return $products_in_cart[$id];
+        echo $products_in_cart[$id];
     }
 
 
-    public static function q_down($id)
+    public function action_q_down($id)
     {
         $products_in_cart = self::get_cart_products();
         if ($products_in_cart[$id] != 1)
@@ -60,7 +52,7 @@ class Cart
             $products_in_cart[$id] --;
         }
         self::save_cart_products($products_in_cart);
-        return $products_in_cart[$id];
+        echo $products_in_cart[$id];
     }
 
 
@@ -103,7 +95,7 @@ class Cart
 
 
     // если пользователь авторизован, то тянет корзину из БД, если нет, то из сессии
-    public static function get_cart_products()
+    protected static function get_cart_products()
     {
         $products_in_cart = array();
         if (isset($_SESSION['logged_user']))
@@ -125,7 +117,7 @@ class Cart
 
 
     // если пользователь авторизован, то сохраняет корзину в БД, если нет, то в сессию
-    public static function save_cart_products($products)
+    protected static function save_cart_products($products)
     {
         if (isset($_SESSION['logged_user']))
         {
@@ -136,5 +128,12 @@ class Cart
             $_SESSION['products'] = $products;
         }
         return true;
+    }
+
+    //очистка корзины
+    protected static function clear()
+    {
+        $products_in_cart = array();
+        self::save_cart_products($products_in_cart);
     }
 }

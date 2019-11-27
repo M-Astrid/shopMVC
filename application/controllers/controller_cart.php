@@ -5,10 +5,9 @@
  * Date: 09.11.2019
  * Time: 12:11
  */
-use Components\Cart;
 use Models\Model_Catalog;
 
-Class Controller_Cart extends Controller
+Class Controller_Cart extends Components\Cart
 {
     public function action_index()
     {
@@ -16,7 +15,7 @@ Class Controller_Cart extends Controller
         $model = new Model_Catalog();
 
         // получаем массив товаров и их количества в корзине
-        $cart = Cart::get_cart_products();
+        $cart = self::get_cart_products();
 
         // если в корзине есть товары, достаем их из БД и считаем общую цену
         if (!empty($cart))
@@ -24,7 +23,7 @@ Class Controller_Cart extends Controller
             $products_ids = array_keys($cart);
             $products = $model::get_products_by_ids($products_ids);
 
-            $total_price = Cart::get_total_price($products);
+            $total_price = self::get_total_price($products);
         }
         // если товаров нет, в шаблон передастся пустой массив
 
@@ -35,14 +34,13 @@ Class Controller_Cart extends Controller
         ));
     }
 
-
     public function action_checkout ()
     {
         // определяем модели
         $model = new Model_Catalog();
 
         // получаем массив товаров и их количества в корзине
-        $cart = Cart::get_cart_products();
+        $cart = self::get_cart_products();
 
         // если в корзине есть товары, достаем их из БД и считаем общую цену
         if (!empty($cart))
@@ -50,7 +48,7 @@ Class Controller_Cart extends Controller
             $products_ids = array_keys($cart);
             $products = $model::get_products_by_ids($products_ids);
 
-            $total_price = Cart::get_total_price($products);
+            $total_price = self::get_total_price($products);
         } // если товаров нет, в переменной $cart будет пустой массив
 
         // если метод пост
@@ -82,7 +80,7 @@ Class Controller_Cart extends Controller
                 $subject = 'Заказ № '.$order_id;
                 $content = 'Пользователь '.$username.' оформил заказ на сумму '.$total_price;
                 $result = mail($admin_email, $subject, $content);
-                Cart::clear();
+                self::clear();
                 header("Location:/success/order/");
             }
 
@@ -104,50 +102,19 @@ Class Controller_Cart extends Controller
             'cart' => $cart,
             'total_price' => $total_price,
         ));
-}
-
-
-    // Ajax responses
-    public function action_add($id, $quantity=1)
-    {
-        echo Cart::add_product($id, $quantity);
-        return true;
-    }
-
-    public function action_delete($id)
-    {
-        Cart::delete_product($id);
-        $referer = $_SERVER['HTTP_REFERER'];
-        header("Location: $referer");
-    }
-
-    public function action_q_down($id)
-    {
-        $quantity = Cart::q_down($id);
-
-        echo $quantity;
-        return true;
-    }
-
-    public function action_q_up($id)
-    {
-        $quantity = Cart::q_up($id);
-
-        echo $quantity;
-        return true;
     }
 
     public function action_refresh_prices($id)
     {
         $model = new Model_Catalog();
 
-        $products_ids = array_keys(Cart::get_cart_products());
+        $products_ids = array_keys(self::get_cart_products());
         $products = $model::get_products_by_ids($products_ids);
         $item = $model->get_product_by_id($id);
 
-        $total_price = strval(Cart::get_total_price($products));
-        $cart_total_price = strval(Cart::get_cart_total_price($item));
-        $cart_count = strval(Cart::count_items());
+        $total_price = strval(self::get_total_price($products));
+        $cart_total_price = strval(self::get_cart_total_price($item));
+        $cart_count = strval(self::count_items());
 
         $data = array(
             'cart_total_price' => $cart_total_price,

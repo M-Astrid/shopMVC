@@ -8,7 +8,7 @@ class Model_Catalog extends \Model
 
 	public static function get_categories_list()
 	{
-	    $category_list = R::getAll("SELECT id, name FROM category ORDER BY sort_order ASC");
+	    $category_list = R::getAll("SELECT id, name FROM category WHERE status=1 ORDER BY sort_order ASC");
 	    return $category_list;
 	}
 
@@ -17,9 +17,9 @@ class Model_Catalog extends \Model
         $product_list = R::getAll("SELECT id, name, price, img, is_new FROM product WHERE display=True ORDER BY id ASC LIMIT ".$count);
         return $product_list;
     }
-    public function get_recommended($count = self::SHOW_BY_DEFAULT)
+    public function get_recommended()
     {
-        $product_list = R::getAll("SELECT id, name, price, img, is_new FROM product WHERE display=True AND is_recommended=True ORDER BY id DESC LIMIT ".$count);
+        $product_list = R::getAll("SELECT id, name, price, img, is_new FROM product WHERE display=True AND is_recommended=True");
         return $product_list;
     }
 

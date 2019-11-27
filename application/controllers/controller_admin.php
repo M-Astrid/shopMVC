@@ -5,7 +5,7 @@
  * Date: 20.11.2019
  * Time: 14:04
  */
-class Controller_Admin extends Components\Admin
+class Controller_Admin extends Components\User
 {
     public function action_index()
     {

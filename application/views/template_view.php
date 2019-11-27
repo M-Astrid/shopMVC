@@ -33,8 +33,12 @@
                         <div class="col-sm-6">
                             <div class="contactinfo">
                                 <ul class="nav nav-pills">
+                                    <?php if (\Components\User::is_admin()): ?>
+                                            <li><a href="/admin"><i class="fa fa-edit"></i>Админпанель</a></li>
+                                    <?php else: ?>
                                     <li><a href="#"><i class="fa fa-phone"></i> +38 093 000 11 22</a></li>
                                     <li><a href="#"><i class="fa fa-envelope"></i> zinchenko.us@gmail.com</a></li>
+                                    <?php endif; ?>
                                 </ul>
                             </div>
                         </div>

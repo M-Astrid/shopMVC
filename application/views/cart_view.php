@@ -26,7 +26,7 @@
 								<a href="/product/<?=$product['id']?>"><img src="<?=\Components\Product::get_image($product['id'])?>" alt=""></a>
 							</td>
 							<td class="cart_description">
-								<h4><a href="/product/<?=$product['id']?>">Colorblock Scuba</a></h4>
+								<h4><a href="/product/<?=$product['id']?>"><?=$product['name']?></a></h4>
 								<p>Web ID: <?=$product['code']?></p>
 							</td>
 							<td class="cart_price">

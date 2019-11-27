@@ -17,7 +17,7 @@ class Status
     );
 
     const DISPLAY_STATUS_MESSAGE = array(
-        '1' => "Отображать",
-        '0' => "Скрыть",
+        '1' => "Отображается",
+        '0' => "Скрыта",
     );
 }
