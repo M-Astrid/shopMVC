@@ -33,7 +33,7 @@
                             <div class="row">
                                 <div class="col-sm-5">
                                     <div class="view-product">
-                                        <img src="<?=\Components\Product::get_image($product['id'])?>" alt="" />
+                                        <img src="<?=\Components\Product::get_image( $product['img'])?>" alt="" />
                                     </div>
                                 </div>
                                 <div class="col-sm-7">

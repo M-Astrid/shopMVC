@@ -1,12 +1,12 @@
 <section>
     <div class="container">
         <div class="row">
-
+            <br/>
             <a href="/admin/category/create" class="btn btn-default back"><i class="fa fa-plus"></i> Добавить категорию</a>
-
+            <br/>
+            <br/>
             <h4>Список категорий</h4>
 
-            <br/>
 
             <table class="table-bordered table-striped table">
                 <tr>

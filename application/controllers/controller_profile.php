@@ -62,4 +62,23 @@ Class Controller_Profile extends Controller
             'user' => $user,
         ));
     }
+
+    public function action_bought()
+    {
+        $id = \Components\User::check_logged();
+        $orders = \Models\Model_Order::get_user_orders($id);
+
+        $ids = array();
+        foreach ($orders as $order)
+        {
+            $order_products[$order['id']] = json_decode($order['products'], true);
+            $ids = array_keys($order_products[$order['id']]);
+            $order_products_detail[$order['id']] = \Models\Model_Catalog::get_products_by_ids($ids);
+        }
+        $this->view->generate('profile_bought_view.php', 'template_view.php', array(
+            'orders' => $orders,
+            'order_products' => $order_products,
+            'order_products_detail' => $order_products_detail,
+        ));
+    }
 }

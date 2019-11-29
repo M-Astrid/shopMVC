@@ -36,6 +36,7 @@ return array (
 
     '^profile$' => 'profile/index',
     '^profile/edit' => 'profile/edit',
+    '^profile/bought' => 'profile/bought',
 
     '^news' => 'news',
     '^news/([\d]+)' => 'news/detail/$1',

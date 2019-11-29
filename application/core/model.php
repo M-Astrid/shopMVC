@@ -47,7 +47,8 @@ class Model
             $object->$key = $value;
         }
 
-		return R::store($object)->id;
+		R::store($object)->id;
+		return $object->id;
 	}
 
     public static function delete_object($table, $id)

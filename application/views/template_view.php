@@ -33,12 +33,8 @@
                         <div class="col-sm-6">
                             <div class="contactinfo">
                                 <ul class="nav nav-pills">
-                                    <?php if (\Components\User::is_admin()): ?>
-                                            <li><a href="/admin"><i class="fa fa-edit"></i>Админпанель</a></li>
-                                    <?php else: ?>
                                     <li><a href="#"><i class="fa fa-phone"></i> +38 093 000 11 22</a></li>
                                     <li><a href="#"><i class="fa fa-envelope"></i> zinchenko.us@gmail.com</a></li>
-                                    <?php endif; ?>
                                 </ul>
                             </div>
                         </div>
@@ -64,7 +60,10 @@
                         </div>
                         <div class="col-sm-8">
                             <div class="shop-menu pull-right">
-                                <ul class="nav navbar-nav">                                    
+                                <ul class="nav navbar-nav">
+                                    <?php if (\Components\User::is_admin()): ?>
+                                        <li><a href="/admin"><i class="fa fa-edit"></i>Админпанель</a></li>
+                                    <?php endif; ?>
                                     <li><a href="/cart/"><i class="fa fa-shopping-cart"></i> Корзина
                                             (<span id="cart-count"><?=\Components\Cart::count_items()?></span>)</a></li>
                                     <?php if (isset($_SESSION['logged_user'])): ?>
@@ -97,8 +96,6 @@
                                 <ul class="nav navbar-nav collapse navbar-collapse">
                                     <li><a href="/">Главная</a></li>
                                     <li><a href="/catalog/">Каталог</a></li>
-                                    <li><a href="/blog/">Блог</a></li>
-                                    <li><a href="/about/">О магазине</a></li>
                                     <li><a href="/contact/">Связаться с нами</a></li>
                                 </ul>
                             </div>

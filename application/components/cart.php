@@ -95,7 +95,7 @@ abstract class Cart extends \Controller
 
 
     // если пользователь авторизован, то тянет корзину из БД, если нет, то из сессии
-    protected static function get_cart_products()
+    public static function get_cart_products()
     {
         $products_in_cart = array();
         if (isset($_SESSION['logged_user']))
@@ -117,7 +117,7 @@ abstract class Cart extends \Controller
 
 
     // если пользователь авторизован, то сохраняет корзину в БД, если нет, то в сессию
-    protected static function save_cart_products($products)
+    public static function save_cart_products($products)
     {
         if (isset($_SESSION['logged_user']))
         {

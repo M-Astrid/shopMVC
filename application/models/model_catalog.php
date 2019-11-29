@@ -14,7 +14,7 @@ class Model_Catalog extends \Model
 
 	public function get_latest_products($count = self::SHOW_BY_DEFAULT)
     {
-        $product_list = R::getAll("SELECT id, name, price, img, is_new FROM product WHERE display=True ORDER BY id ASC LIMIT ".$count);
+        $product_list = R::getAll("SELECT id, name, price, img, is_new FROM product WHERE display=True AND is_new=TRUE ORDER BY id DESC LIMIT ".$count);
         return $product_list;
     }
     public function get_recommended()
@@ -54,6 +54,12 @@ class Model_Catalog extends \Model
     {
         $list = implode(', ', $ids);
         return R::getAll("SELECT * FROM product WHERE id IN ($list)");
+
+    }
+
+    public static function get_admin_products()
+    {
+        return R::getAll("SELECT * FROM product ORDER BY category_id");
 
     }
 }

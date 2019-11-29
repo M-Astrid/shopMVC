@@ -8,7 +8,7 @@
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <h4 class="panel-title">
-                                        <a href="/catalog/">ALL PRODUCTS</a>
+                                        <a href="/catalog/">Все товары</a>
                                     </h4>
                                 </div>
                             </div>
@@ -30,21 +30,21 @@
 
             <div class="col-sm-9 padding-right">
                 <div class="features_items"><!--features_items-->
-                    <h2 class="title text-center">Последние товары</h2>
+                    <h2 class="title text-center">Новинки</h2>
 
                     <?php foreach ($products as $product): ?>
                     <div class="col-sm-4">
                         <div class="product-image-wrapper">
                             <div class="single-products">
                                 <div class="productinfo text-center">
-                                    <a href="/product/<?=$product['id']?>"><img src="<?=\Components\Product::get_image($product['id'])?>"></a>
-                                    <h2><?=$product['price']?></h2>
+                                    <a href="/product/<?=$product['id']?>"><img src="<?=\Components\Product::get_image($product['img'])?>"></a>
+                                    <h2>$ <?=$product['price']?></h2>
                                     <a href="/product/<?=$product['id']?>"><p><?=$product['name']?></p></a>
                                     <a href="#" class="btn btn-default add-to-cart" data-id="<?=$product['id']?>"><i class="fa fa-shopping-cart"></i>В корзину</a>
                                 </div>
                                 <?php if ( $product['is_new'] == 1 ): ?>
                                 <img src="/images/home/new.png" class="new">
-                                <?php endif ?>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>

@@ -44,8 +44,8 @@ class Controller_Admin_Products extends Components\User
                     }
                 }
 
-                // перенаправляем на созданный объект
-                $referer = "/admin/products/$id/";
+                // перенаправляем на список товаров
+                $referer = "/admin/products/";
                 header("Location: $referer");
             }
         }
@@ -62,7 +62,7 @@ class Controller_Admin_Products extends Components\User
         self::check_admin();
 
         // получаем список товаров
-        $products = \Model::get_all_objects('product');
+        $products = \Models\Model_Catalog::get_admin_products();
 
         $this->view->generate('admin\products_view.php', 'admin\template_view.php', array(
             'products' => $products,
@@ -98,13 +98,26 @@ class Controller_Admin_Products extends Components\User
                         $data[$field] = $_POST[$field];
                     }
                 }
+                if (is_uploaded_file($_FILES['img']['tmp_name']))
+                {
+                    //$prev_img = ;
+
+                    if (file_exists($_SERVER['DOCUMENT_ROOT']."/upload/img/catalog/".$product['img']))
+                    {
+                        unlink($_SERVER['DOCUMENT_ROOT']."/upload/img/catalog/".$product['img']);
+                    }
+                    $name = $_FILES['img']['name'];
+                    while (file_exists($_SERVER['DOCUMENT_ROOT']."/upload/img/catalog/$name"))
+                    {
+                        $ext = pathinfo($name, PATHINFO_EXTENSION);
+                        $name = basename($name, ".$ext") . '_1.' . $ext;
+                    }
+                    move_uploaded_file($_FILES['img']['tmp_name'], $_SERVER['DOCUMENT_ROOT']."/upload/img/catalog/$name");
+
+                    $data['img'] = $name;
+                }
 
                 $product = \Model::update_object('product', $id, $data);
-
-                    if (is_uploaded_file($_FILES['img']['tmp_name']))
-                    {
-                        move_uploaded_file($_FILES['img']['tmp_name'], $_SERVER['DOCUMENT_ROOT']."/upload/img/catalog/$id.jpg");
-                    }
 
                 header("Location: /admin/products/");
             }
