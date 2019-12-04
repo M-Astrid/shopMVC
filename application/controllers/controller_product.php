@@ -15,7 +15,7 @@ class Controller_Product extends Controller
 
         $product = $model->get_object_array_by_id('product', $product_id);
 
-        $categories = $model::get_categories_list();
+        $categories = $model->get_categories_list();
 
         $this->view->generate('product_detail_view.php', 'template_view.php', array(
             'product' => $product,

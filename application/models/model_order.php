@@ -12,13 +12,16 @@ class Model_Order extends \Model
 {
     public function create_order($name, $tel, $comment, $userid, $products)
     {
+        $user = R::findOne('user', 'id = ?', array($userid));
+
         $order = R::dispense('orders');
         $order->name = $name;
         $order->tel = $tel;
         $order->comment = $comment;
         $order->products = json_encode($products);
         $order->status = 1;
-        $order->user = R::findOne('user', 'id = ?', array($userid));
+        $order->user = $user;
+        // $order->email = $user->email;
         R::store($order);
 
         return $order->id;

@@ -90,7 +90,7 @@ Class Controller_Cart extends Components\Cart
             if (isset($_SESSION['logged_user']))
             {
                 $id = $_SESSION['logged_user'];
-                $user = $model->get_object_array_by_id('user', $id);
+                $user = $model::get_object_array_by_id('user', $id);
                 $username = $user['username'];
             } else $username = '';
         }
@@ -113,7 +113,7 @@ Class Controller_Cart extends Components\Cart
         // достаем из БД товары корзины
         $products = $model::get_products_by_ids($products_ids);
         // достаем конкретный товар
-        $item = $model->get_product_by_id($id);
+        $item = $model::get_product_by_id($id);
 
         $total_price = strval(self::get_total_price($products));
         $cart_total_price = strval(self::get_cart_total_price($item));

@@ -8,7 +8,7 @@ class Controller_Main extends Controller
 	{
 	    $model = new Model_Catalog();
 
-	    $categories = $model::get_categories_list();
+	    $categories = $model->get_categories_list();
 	    $products = $model->get_latest_products();
 	    $recommended = $model->get_recommended();
 		$this->view->generate('main_view.php', 'template_view.php', array(

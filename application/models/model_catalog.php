@@ -7,6 +7,13 @@ class Model_Catalog extends \Model
     // количсетво товаров на одной странице каталога/главной
     const SHOW_BY_DEFAULT = 6;
 
+    // returns array
+    public static function get_product_by_id($id)
+    {
+        $table = "product";
+        return parent::get_object_array_by_id($table, $id);
+    }
+
     // получает все категории со статусом "отображается"
     // returns array
 	public static function get_categories_list()
@@ -17,7 +24,7 @@ class Model_Catalog extends \Model
 
 	// получает все товары, отмеченные как новинка
     // returns array
-	public function get_latest_products($count = self::SHOW_BY_DEFAULT)
+	public static function get_latest_products($count = self::SHOW_BY_DEFAULT)
     {
         $product_list = R::getAll("SELECT id, name, price, img, is_new FROM product WHERE display=1 ORDER BY is_new DESC LIMIT ".$count);
         return $product_list;
@@ -25,7 +32,7 @@ class Model_Catalog extends \Model
 
     // получает все товары, отмеченные как рекомендуемые
     // returns array
-    public function get_recommended()
+    public static function get_recommended()
     {
         $product_list = R::getAll("SELECT id, name, price, img, is_new FROM product WHERE display=True AND is_recommended=True");
         return $product_list;
@@ -33,7 +40,7 @@ class Model_Catalog extends \Model
 
     // получает товары на странице каталога в указанной категории. id категории = 0 - все товары
     // returns array
-    public function get_products_by_category($category_id, $page, $count = self::SHOW_BY_DEFAULT)
+    public static function get_products_by_category($category_id, $page, $count = self::SHOW_BY_DEFAULT)
     {
         $condition = "AND category_id = $category_id";
         if ($category_id=="0")
@@ -57,25 +64,18 @@ class Model_Catalog extends \Model
     }
 
     // returns array
-    public function get_product_by_id($product_id)
-    {
-        $product = R::getrow("SELECT * FROM product WHERE id=$product_id");
-        return $product;
-    }
-
-    // returns array
     public static function get_products_by_ids($ids)
     {
         $list = implode(', ', $ids);
         return R::getAll("SELECT * FROM product WHERE id IN ($list)");
-
     }
+
 
     // выводит все товары, в  т.ч. скрытые, для админ панели
     // returns array
     public static function get_admin_products()
     {
-        return R::getAll("SELECT * FROM product ORDER BY category_id");
-
+        $table = "product";
+        return parent::get_all_objects($table);
     }
 }
