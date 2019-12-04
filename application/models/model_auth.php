@@ -12,7 +12,6 @@ class Model_Auth extends \Model
         $user->password = password_hash($password, PASSWORD_DEFAULT);
         $user->join_date = time();
         R::store($user);
-
         return true;
     }
 

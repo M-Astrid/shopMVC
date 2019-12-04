@@ -68,7 +68,6 @@ Class Controller_Profile extends Controller
         $id = \Components\User::check_logged();
         $orders = \Models\Model_Order::get_user_orders($id);
 
-        $ids = array();
         foreach ($orders as $order)
         {
             $order_products[$order['id']] = json_decode($order['products'], true);

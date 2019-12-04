@@ -46,8 +46,8 @@
             <input type="text" name="brand" placeholder="" value="<?php echo $product['brand']; ?>">
 
             <p>Изображение товара</p>
-            <img src="<?=\Components\Product::get_image($product['id'])?>" width="200" alt="" />
-            <input type="file" name="img" placeholder="" value="<?php echo $product['image']; ?>">
+            <img src="<?=\Components\Product::get_image($product['img'])?>" width="200" alt="" />
+            <input type="file" name="img" placeholder="" value="<?php echo $product['img']; ?>">
 
             <p>Детальное описание</p>
             <textarea name="description"><?php echo $product['description']; ?></textarea>

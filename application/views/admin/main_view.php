@@ -18,6 +18,12 @@
                 <li><a href="/admin/orders">Управление заказами</a></li>
             </ul>
 
+            <br/><br/><br/><br/><br/>
+            <br/><br/><br/><br/><br/>
+            <br/><br/><br/><br/><br/>
+            <br/><br/>
+            <br/><br/>
+
         </div>
     </div>
 </section>

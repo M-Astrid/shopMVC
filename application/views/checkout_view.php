@@ -14,27 +14,36 @@
             <?php endif; ?>
 
 						<div class="shopper-info">
-							<p>Укажите информацию о себе</p>
-							<form class="user-form" action="/cart/checkout/" method="post">
-                                <input type="text" placeholder="Имя" name="username" value="<?=$username?>">
-                                <input type="tel" placeholder="Телефон" name="tel" value="<?=$_POST['tel']?>">
-                                <input type="text" size="" placeholder="Комментарий к заказу" name="comment" value="<?=$_POST['comment']?>">
+							<h4>Укажите информацию о себе</h4>
+                            <br>
+							<form class="signup-form" action="/cart/checkout/" method="post">
+                                <input id="shopper-info-input" type="text" placeholder="Имя" name="username" value="<?=$username?>">
+                                <input id="shopper-info-input" type="tel" placeholder="Телефон" name="tel" value="<?=$_POST['tel']?>">
+                                <input id="shopper-info-input" type="text" size="" placeholder="Комментарий к заказу" name="comment" value="<?=$_POST['comment']?>">
+                                <div/>
 <br>
 <br>
 <br>
-                            <div class="confirm-order-area">
-                                <div class="total_area">
+                                <section id="do_action">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="total_area">
                                     <ul>
                                         <li>Кол-во товаров в корзине: <span><?=\Components\Cart::count_items()?></span></li>
                                         <li>Итоговая сумма: <span>$<span class="subtotal"><?=$total_price?></span></span></li>
                                     </ul>
                                     <button class="btn btn-default check_out" type="submit">Оформить заказ.</button>
-                                </div>
-                            </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
 
                                 <br>
 
 							</form>
-                        </div>
+
             <br>
             <br>
+        </div>

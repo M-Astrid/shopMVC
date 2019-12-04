@@ -24,6 +24,8 @@ class Model_Order extends \Model
         return $order->id;
     }
 
+    // все заказы пользователя
+    // returns array
     public static function get_user_orders($id)
     {
         return R::getAll('SELECT id, date, status, products FROM orders WHERE user_id = ?', [$id]);

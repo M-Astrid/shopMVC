@@ -98,27 +98,30 @@ class Controller_Admin_Products extends Components\User
                         $data[$field] = $_POST[$field];
                     }
                 }
+                // если заружено изображение,
                 if (is_uploaded_file($_FILES['img']['tmp_name']))
                 {
-                    //$prev_img = ;
-
-                    if (file_exists($_SERVER['DOCUMENT_ROOT']."/upload/img/catalog/".$product['img']))
-                    {
-                        unlink($_SERVER['DOCUMENT_ROOT']."/upload/img/catalog/".$product['img']);
-                    }
+                    // получаем имя загруженного файла
                     $name = $_FILES['img']['name'];
+                    // если изображение с таким именем уже есть на сервере, добавляем префикс
                     while (file_exists($_SERVER['DOCUMENT_ROOT']."/upload/img/catalog/$name"))
                     {
                         $ext = pathinfo($name, PATHINFO_EXTENSION);
                         $name = basename($name, ".$ext") . '_1.' . $ext;
                     }
+                    // сохраняем файл на сервер
                     move_uploaded_file($_FILES['img']['tmp_name'], $_SERVER['DOCUMENT_ROOT']."/upload/img/catalog/$name");
-
+                    // добавляем имя изображения в массив дата
                     $data['img'] = $name;
+                    // если у товара до этого было изображение, удаляем его с сервера
+                    if (file_exists($_SERVER['DOCUMENT_ROOT']."/upload/img/catalog/".$product['img']))
+                    {
+                        unlink($_SERVER['DOCUMENT_ROOT']."/upload/img/catalog/".$product['img']);
+                    }
                 }
 
+                // обновляем продукт данными из массива
                 $product = \Model::update_object('product', $id, $data);
-
                 header("Location: /admin/products/");
             }
         }

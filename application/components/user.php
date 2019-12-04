@@ -9,7 +9,7 @@ namespace Components;
 
 abstract class User extends \Controller
 {
-
+// если не авторизован, перенаправляет на страницу авторизации
     public static function check_logged()
     {
         if (!isset($_SESSION['logged_user']))
@@ -19,7 +19,7 @@ abstract class User extends \Controller
         else return $_SESSION['logged_user'];
     }
 
-// check admin rights and restrict access if not admin
+// проверяет админ права, если нет, то ограничивает доступ
     public static function check_admin()
     {
         $id = User::check_logged();
@@ -31,7 +31,7 @@ abstract class User extends \Controller
         else die('Нет прав доступа');
     }
 
-// returns true or false
+// админ права true or false
     public static function is_admin()
     {
         if (isset($_SESSION['logged_user']))

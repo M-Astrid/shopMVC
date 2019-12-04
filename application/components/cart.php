@@ -29,7 +29,7 @@ abstract class Cart extends \Controller
         $products_in_cart = self::get_cart_products();
         unset($products_in_cart[$id]);
         self::save_cart_products($products_in_cart);
-
+        header("Location: /cart/");
         return true;
     }
 
@@ -50,12 +50,28 @@ abstract class Cart extends \Controller
         if ($products_in_cart[$id] != 1)
         {
             $products_in_cart[$id] --;
+            self::save_cart_products($products_in_cart);
+        }
+        echo $products_in_cart[$id];
+    }
+
+
+
+    public function action_q_input($id, $quantity)
+    {
+        $products_in_cart = self::get_cart_products();
+        if ($quantity == 0)
+        {
+            $products_in_cart[$id] = 1;
+        } else
+        {
+            $products_in_cart[$id] = $quantity;
         }
         self::save_cart_products($products_in_cart);
         echo $products_in_cart[$id];
     }
 
-
+// возвращает текущее количество товаров в корзине
     public static function count_items()
     {
         $products_in_cart = self::get_cart_products();
@@ -85,7 +101,7 @@ abstract class Cart extends \Controller
     }
 
 
-    // общая стоимость для отдельного наименования товара в корзине
+    // общая стоимость товаров одного одного наименования в корзине
     public static function get_cart_total_price($item)
     {
         $products_in_cart = self::get_cart_products();
@@ -130,7 +146,6 @@ abstract class Cart extends \Controller
         return true;
     }
 
-    //очистка корзины
     protected static function clear()
     {
         $products_in_cart = array();

@@ -6,6 +6,8 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <title>Главная</title>
+        <link rel="stylesheet" href="/assets/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css" />
+
         <link href="/css/bootstrap.min.css" rel="stylesheet">
         <link href="/css/font-awesome.min.css" rel="stylesheet">
         <link href="/css/prettyPhoto.css" rel="stylesheet">
@@ -33,8 +35,8 @@
                         <div class="col-sm-6">
                             <div class="contactinfo">
                                 <ul class="nav nav-pills">
-                                    <li><a href="#"><i class="fa fa-phone"></i> +38 093 000 11 22</a></li>
-                                    <li><a href="#"><i class="fa fa-envelope"></i> zinchenko.us@gmail.com</a></li>
+                                    <li><a href="#"><i class="fa fa-phone"></i> +86 155 4239 7615</a></li>
+                                    <li><a href="#"><i class="fa fa-envelope"></i> evgeniia.shumakova@gmail.com</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -55,7 +57,7 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="logo pull-left">
-                                <a href="/"><img src="/images/home/logo.png" alt="" /></a>
+                                <a href="/"><img src="/images/home/logo.jpg" alt="" /></a>
                             </div>
                         </div>
                         <div class="col-sm-8">
@@ -119,8 +121,8 @@
             <div class="footer-bottom">
                 <div class="container">
                     <div class="row">
-                        <p class="pull-left">Copyright © 2015</p>
-                        <p class="pull-right">Курс PHP Start</p>
+                        <p class="pull-left">Copyright © 2019</p>
+                        <p class="pull-right">Parlo Fashion Furniture</p>
                     </div>
                 </div>
             </div>
@@ -191,5 +193,46 @@
                 });
             });
         </script>
+    <script>
+        $(document).ready(function() {
+            $('.cart_quantity_input').keydown(function(e) {
+                if(e.keyCode === 13) {
+                    e.preventDefault();
+                    var id = $(this).attr("data-id");
+                    var quantity = $(this).val();
+                    $.get('/cart/q_input/'+id+'/'+quantity, function (data) {
+                        $("#quantity_input"+id).val(data);
+                    });
+                    $.getJSON('/cart/refresh_prices/'+id, function(data){
+                        $(".cart_total_price"+id).html(data.cart_total_price);
+                        $(".subtotal").html(data.subtotal);
+                        $("#cart-count").html(data.cart_count);
+                    });
+                    return false;
+                }
+            });
+        });
+    </script>
+    <script src="/assets/OwlCarousel2-2.3.4/dist/owl.carousel.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.owl-carousel').owlCarousel(
+                {
+                    'loop': true,
+                    'autoplay': true,
+                    'autoplayTimeout': 4000,
+                    'autoplayHoverPause': true,
+                    'slideBy': 3,
+                    'nav': true,
+                    'navText': ['<a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">\n' +
+                    '                            <i class="fa fa-angle-left"></i>\n' +
+                    '                        </a>',
+                        '<a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">\n' +
+                        '                            <i class="fa fa-angle-right"></i>\n' +
+                        '                        </a>']
+                }
+            );
+        });
+    </script>
     </body>
 </html>

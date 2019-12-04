@@ -55,6 +55,7 @@ return array (
     '^cart/delete/([\d]+)$' => 'cart/delete/$1',
     '^cart/q_up/([\d]+)$' => 'cart/q_up/$1',
     '^cart/q_down/([\d]+)$' => 'cart/q_down/$1',
+    '^cart/q_input/([\d]+)/([\d]+)$' => 'cart/q_input/$1/$2',
     '^cart/refresh_prices/([\d]+)$' => 'cart/refresh_prices/$1',
     '^cart$' => 'cart/index',
     '^cart/checkout$' => 'cart/checkout',

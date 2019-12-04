@@ -7,13 +7,10 @@ class Model
 	    //
 	}
 
-	public function get_data()
-	{
-		// todo
-	}
-
-    // создаем объект на основе полученных данных, получаем его id
-    public static function create_object($table, $data)
+    // создаем объект на основе полученных данных
+    // ключи массива должны соответствовать названиям столбцов таблицы
+    // возвращает id объекта
+    public static function create_object($table, array $data)
     {
         $object = R::dispense($table);
         foreach($data as $key => $value)
@@ -24,21 +21,27 @@ class Model
         return $object->id;
     }
 
+    // returns array
     public static function get_all_objects($table)
     {
         return R::getAll("SELECT * FROM $table");
     }
 
+    // returns array
     public static function get_object_array_by_id($table, $id)
     {
         return R::getrow("SELECT * FROM $table WHERE id = ?", [$id]);
     }
 
+    // returns rb object
     public static function get_object_by_id($table, $id)
     {
         return R::getAll("SELECT * FROM $table WHERE id = ? LIMIT 1", [$id]);
     }
 
+    // обновляем объект на основе полученных данных
+    // ключи массива должны соответствовать названиям столбцов таблицы
+    // возвращает id объекта
 	public static function update_object($table, $id, $data)
 	{
 	    $object = R::load($table, $id);
@@ -47,7 +50,7 @@ class Model
             $object->$key = $value;
         }
 
-		R::store($object)->id;
+		R::store($object);
 		return $object->id;
 	}
 

@@ -10,7 +10,7 @@ namespace Components;
 class Status
 {
     const ORDER_STATUS_MESSAGE = array(
-        '1' => "Новый",
+        '1' => "Ожидает подтверждения",
         '2' => "В обработке",
         '3' => "Доставляется",
         '4' => "Закрыт",

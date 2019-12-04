@@ -108,8 +108,11 @@ Class Controller_Cart extends Components\Cart
     {
         $model = new Model_Catalog();
 
+        // получаем id товаров в корзине
         $products_ids = array_keys(self::get_cart_products());
+        // достаем из БД товары корзины
         $products = $model::get_products_by_ids($products_ids);
+        // достаем конкретный товар
         $item = $model->get_product_by_id($id);
 
         $total_price = strval(self::get_total_price($products));
@@ -126,9 +129,9 @@ Class Controller_Cart extends Components\Cart
         return true;
     }
 
-    private function validate_phone_number( $string ) {
+    private function validate_phone_number($string) {
 
-        if ( preg_match( '/^[+]?([\d]{0,3})?[\(\.\-\s]?([\d]{3})[\)\.\-\s]*([\d]{3})[\.\-\s]?([\d]{4})$/', $string ) ) {
+        if (preg_match('/^[+]?([\d]{0,3})?[\(\.\-\s]?([\d]{3})[\)\.\-\s]*([\d]{3})[\.\-\s]?([\d]{4})$/', $string ) ) {
 
             return true;
 
@@ -136,6 +139,5 @@ Class Controller_Cart extends Components\Cart
 
             return false;
         }
-
     }
 }
