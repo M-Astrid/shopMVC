@@ -64,7 +64,7 @@ class Controller_Admin_Products extends Components\User
         // получаем список товаров
         $products = \Models\Model_Catalog::get_admin_products();
 
-        $this->view->generate('admin\products_view.php', 'admin\template_view.php', array(
+        $this->view->generate('admin/products_view.php', 'admin/template_view.php', array(
             'products' => $products,
         ));
     }
@@ -101,22 +101,35 @@ class Controller_Admin_Products extends Components\User
                 // если заружено изображение,
                 if (is_uploaded_file($_FILES['img']['tmp_name']))
                 {
-                    // получаем имя загруженного файла
-                    $name = $_FILES['img']['name'];
-                    // если изображение с таким именем уже есть на сервере, добавляем префикс
-                    while (file_exists($_SERVER['DOCUMENT_ROOT']."/upload/img/catalog/$name"))
+                    // проверяем, что загруженный файл - это картинка
+                    $types = array('image/gif', 'image/png', 'image/jpeg');
+                    $size = 1024000;
+                    if (!in_array($_FILES['picture']['type'], $types)) $errors[] = 'Неверный тип файла. Поддерживаемые форматы: jpg, gif, png)';
+                    if ($_FILES['picture']['size'] > $size) $errors[] = 'Слишком большой размер изображения.';
+
+                    if (empty($errors))
                     {
-                        $ext = pathinfo($name, PATHINFO_EXTENSION);
-                        $name = basename($name, ".$ext") . '_1.' . $ext;
-                    }
-                    // сохраняем файл на сервер
-                    move_uploaded_file($_FILES['img']['tmp_name'], $_SERVER['DOCUMENT_ROOT']."/upload/img/catalog/$name");
-                    // добавляем имя изображения в массив дата
-                    $data['img'] = $name;
-                    // если у товара до этого было изображение, удаляем его с сервера
-                    if (file_exists($_SERVER['DOCUMENT_ROOT']."/upload/img/catalog/".$product['img']))
-                    {
-                        unlink($_SERVER['DOCUMENT_ROOT']."/upload/img/catalog/".$product['img']);
+                        // получаем имя загруженного файла
+                        $name = $_FILES['img']['name'];
+
+                        // если изображение с таким именем уже есть на сервере, добавляем префикс
+                        while (file_exists($_SERVER['DOCUMENT_ROOT']."/upload/img/catalog/$name"))
+                        {
+                            $ext = pathinfo($name, PATHINFO_EXTENSION);
+                            $name = basename($name, ".$ext") . '_1.' . $ext;
+                        }
+
+                        // сохраняем файл на сервер
+                        move_uploaded_file($_FILES['img']['tmp_name'], $_SERVER['DOCUMENT_ROOT']."/upload/img/catalog/$name");
+
+                        // добавляем имя изображения в массив дата
+                        $data['img'] = $name;
+
+                        // если у товара до этого было изображение, удаляем его с сервера
+                        if (file_exists($_SERVER['DOCUMENT_ROOT']."/upload/img/catalog/".$product['img']))
+                        {
+                            unlink($_SERVER['DOCUMENT_ROOT']."/upload/img/catalog/".$product['img']);
+                        }
                     }
                 }
 

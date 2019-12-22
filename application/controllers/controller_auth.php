@@ -39,8 +39,8 @@ class Controller_Auth extends Controller
     {
         $model = new Model_Auth();
 
+        $errors = array();
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $errors = array();
 
             // проверяем заполненность полей
             if (trim($_POST['email']) == "") {

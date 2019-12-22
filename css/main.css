@@ -2281,7 +2281,7 @@ h2.title {
 
 .media-list .btn-primary, 
 .commnets .btn-primary {
-  background:#FC9A11;
+  background: #fc424c;
   border: 0 none;
   border-radius: 0;
   color: #FFFFFF;
@@ -2478,7 +2478,7 @@ h2.title {
 #contact-page .form-control:focus, 
 #contact-page .form-control:hover {
   box-shadow: inherit;
-  border-color: #FDB45E;
+  border-color: #444443;
 }
 
 #contact-page .contact-info {

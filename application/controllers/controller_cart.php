@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: astrid
- * Date: 09.11.2019
- * Time: 12:11
- */
 use Models\Model_Catalog;
 
 Class Controller_Cart extends Components\Cart
@@ -36,7 +30,10 @@ Class Controller_Cart extends Components\Cart
 
     public function action_checkout ()
     {
-        // определяем модели
+        ob_start();
+        $errors = array();
+
+        // определяем модель
         $model = new Model_Catalog();
 
         // получаем массив товаров и их количества в корзине
@@ -50,6 +47,7 @@ Class Controller_Cart extends Components\Cart
 
             $total_price = self::get_total_price($products);
         } // если товаров нет, в переменной $cart будет пустой массив
+
 
         // если метод пост
         if ($_SERVER['REQUEST_METHOD'] == "POST")
@@ -82,6 +80,7 @@ Class Controller_Cart extends Components\Cart
                 $result = mail($admin_email, $subject, $content);
                 self::clear();
                 header("Location:/success/order/");
+                // echo "<script>document.location.replace('http://jeanjemw.beget.tech/success/order/');</script>";
             }
 
         } else { // если метод гет

@@ -7,19 +7,17 @@
 				</ol>
 			</div><!--/breadcrums-->
 
-            <?php if ($errors != null): ?>
-                <?php foreach ($errors as $error): ?>
-                    <div id="errors" style="color: red;"><li> <?=$error?> </li></div>
-                <?php endforeach; ?>
-            <?php endif; ?>
-
 						<div class="shopper-info">
 							<h4>Укажите информацию о себе</h4>
-                            <br>
+                            <?php if (!empty($errors)): ?>
+                                <?php foreach ($errors as $error): ?>
+                                    <div id="errors" style="color: red;"><li> <?=$error?> </li></div>
+                                <?php endforeach; ?>
+                            <?php endif; ?> <br>
 							<form class="signup-form" action="/cart/checkout/" method="post">
                                 <input id="shopper-info-input" type="text" placeholder="Имя" name="username" value="<?=$username?>">
-                                <input id="shopper-info-input" type="tel" placeholder="Телефон" name="tel" value="<?=$_POST['tel']?>">
-                                <input id="shopper-info-input" type="text" size="" placeholder="Комментарий к заказу" name="comment" value="<?=$_POST['comment']?>">
+                                <input id="shopper-info-input" type="tel" placeholder="Телефон" name="tel" value="<?=@$_POST['tel']?>">
+                                <input id="shopper-info-input" type="text" size="" placeholder="Комментарий к заказу" name="comment" value="<?=@$_POST['comment']?>">
                                 <div/>
 <br>
 <br>

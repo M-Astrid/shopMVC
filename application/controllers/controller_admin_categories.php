@@ -45,7 +45,7 @@ class Controller_Admin_Categories extends Components\User
         // получаем список товаров
         $categories = \Model::get_all_objects('category');
 
-        $this->view->generate('admin\categories_view.php', 'admin\template_view.php', array(
+        $this->view->generate('admin/categories_view.php', 'admin/template_view.php', array(
             'categories' => $categories,
         ));
     }

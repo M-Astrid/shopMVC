@@ -12,6 +12,6 @@ class Controller_Admin extends Components\User
         // проверяем права доступа
         self::check_admin();
 
-        $this->view->generate('admin\main_view.php', 'admin\template_view.php', array());
+        $this->view->generate('admin/main_view.php', 'admin/template_view.php', array());
     }
 }

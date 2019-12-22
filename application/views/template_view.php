@@ -6,7 +6,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <title>Parlo</title>
-        <link rel="stylesheet" href="/assets/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css" />
+        <link rel="stylesheet" href="/css/owl.carousel.min.css" />
 
         <link href="/css/bootstrap.min.css" rel="stylesheet">
         <link href="/css/font-awesome.min.css" rel="stylesheet">
@@ -136,84 +136,8 @@
         <script src="/js/price-range.js"></script>
         <script src="/js/jquery.prettyPhoto.js"></script>
         <script src="/js/main.js"></script>
-
-        <script>
-             function add_to_cart() {
-                 var id = $(".add").attr("data-id");
-                 var quantity = $(".quantity").val();
-                 $.post("/cart/add/"+id+"/"+quantity, {}, function(data){
-                     $("#cart-count").html(data);
-                 });
-                 return false;
-             }
-        </script>
-
-        <script>
-            $(document).ready(function(){
-                $(".add-to-cart").click(function() {
-                    var id = $(this).attr("data-id");
-                    $.post("/cart/add/"+id, {}, function(data){
-                        $("#cart-count").html(data);
-                    });
-                    return false;
-                });
-            });
-        </script>
-
-        <script>
-            $(document).ready(function(){
-                $(".cart_quantity_up").click(function() {
-                    var id = $(this).attr("data-id");
-                    $.get('/cart/q_up/'+id, function(data){
-                        $("#quantity_input"+id).val(data);
-                    });
-                    $.getJSON('/cart/refresh_prices/'+id, function(data){
-                        $(".cart_total_price"+id).html(data.cart_total_price);
-                        $(".subtotal").html(data.subtotal);
-                        $("#cart-count").html(data.cart_count);
-                    });
-                    return false;
-                });
-            });
-        </script>
-
-        <script>
-            $(document).ready(function(){
-                $(".cart_quantity_down").click(function() {
-                    var id = $(this).attr("data-id");
-                    $.get('/cart/q_down/'+id, function(data){
-                        $("#quantity_input"+id).val(data);
-                    });
-                    $.getJSON('/cart/refresh_prices/'+id, function(data){
-                        $(".cart_total_price"+id).html(data.cart_total_price);
-                        $(".subtotal").html(data.subtotal);
-                        $("#cart-count").html(data.cart_count);
-                    });
-                    return false;
-                });
-            });
-        </script>
-    <script>
-        $(document).ready(function() {
-            $('.cart_quantity_input').keydown(function(e) {
-                if(e.keyCode === 13) {
-                    e.preventDefault();
-                    var id = $(this).attr("data-id");
-                    var quantity = $(this).val();
-                    $.get('/cart/q_input/'+id+'/'+quantity, function (data) {
-                        $("#quantity_input"+id).val(data);
-                    });
-                    $.getJSON('/cart/refresh_prices/'+id, function(data){
-                        $(".cart_total_price"+id).html(data.cart_total_price);
-                        $(".subtotal").html(data.subtotal);
-                        $("#cart-count").html(data.cart_count);
-                    });
-                    return false;
-                }
-            });
-        });
-    </script>
-    <script src="/assets/OwlCarousel2-2.3.4/dist/owl.carousel.min.js"></script>
+        <script src="/js/cart_scripts.js"></script>
+    <script src="/js/owl.carousel.min.js"></script>
     <script>
         $(document).ready(function(){
             $('.owl-carousel').owlCarousel(

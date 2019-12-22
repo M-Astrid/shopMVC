@@ -30,6 +30,11 @@ class Product
         return $path.$no_image;
     }
 
+    public static function resize_img($img)
+    {
+
+    }
+
     public static function get_category_name($id)
     {
         $name = \Model::get_object_array_by_id('category', $id);
