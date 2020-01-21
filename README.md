@@ -7,3 +7,4 @@
 Веб-адрес: http://jeanjemw.beget.tech
 
 *данные для входа в админпанель высылаю по требованию на почту
+e-mail: evgeniia.shumakova@gmail.com
